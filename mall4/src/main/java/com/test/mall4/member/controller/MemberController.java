@@ -1,5 +1,7 @@
 package com.test.mall4.member.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,26 +12,23 @@ import com.test.mall4.member.service.MemberService;
 
 @Controller
 public class MemberController {
-	// autowired : 주입 => memberService
 	@Autowired
-	MemberService memberService;
+	private MemberService memberService;
 	
-	@RequestMapping(value = {"/","/index"} , method=RequestMethod.GET)
-	public String index() {
-		return "index";
-	}
-	
+	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
+
 	@RequestMapping(value = {"/addMember"} , method=RequestMethod.GET)
 	public String insertMember() {
+		logger.info("MemberController get");
 		return "addMember";
 	}
 	
 	@RequestMapping(value = {"/addMember"} , method=RequestMethod.POST)
 	public String insertMember(Member member) {
-		
-		MemberService memberService;
-		insertMember(member);
-		
-		return "redirect:/addMember";
+		logger.info("MemberController post");
+		logger.info("ID,PW: " + member.getMemberId() + " , " + member.getMemberPw());
+		String memberService = this.memberService.insertMember(member);
+		logger.info(memberService);		
+		return "redirect:/index";
 	}
 }
