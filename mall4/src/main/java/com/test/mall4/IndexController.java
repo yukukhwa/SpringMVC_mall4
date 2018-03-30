@@ -15,8 +15,27 @@ public class IndexController {
 	private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
 	
 	@RequestMapping(value = {"/","/index"}, method = RequestMethod.GET)
-	public String home() {
+	public String index() {
 		return "index";
 	}
 	
+	/*@RequestMapping(value = {"/addMember"}, method = RequestMethod.GET)
+	public String addMember() {
+		return "index";
+	}
+	
+	@RequestMapping(value = {"/addAddress"}, method = RequestMethod.GET)
+	public String addAddress() {
+		return "index";
+	}
+	
+	@RequestMapping(value = {"/addCategory"}, method = RequestMethod.GET)
+	public String addCategory() {
+		return "index";
+	}
+	
+	@RequestMapping(value = {"/addItem"}, method = RequestMethod.GET)
+	public String addItem() {
+		return "index";
+	}*/
 }
