@@ -8,11 +8,22 @@
 </head>
 <body>
 	<h1>getMemberList</h1>
-	<table>
-	<c:forEach var="member" items="${list}">
+	<table border="1">
+		<thead>
+			<tr>
+				<th>멤버아이디</th>
+				<th>멤버패스워드</th>
+			</tr>
+		</thead>
 		
-		${member.memberId}
-	</c:forEach>
+		<tbody>
+			<c:forEach var="member" items="${list}">
+				<tr>
+					<td>${member.memberId}</td>
+					<td>${member.memberPw}</td>
+				</tr>
+			</c:forEach>
+		</tbody>
 	</table>
 </body>
 </html>

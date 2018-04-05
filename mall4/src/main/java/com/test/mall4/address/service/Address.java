@@ -1,7 +1,17 @@
 package com.test.mall4.address.service;
 
 public class Address {
+	private int addressNo;
 	private String addressContent;
+	
+
+	public int getAddressNo() {
+		return addressNo;
+	}
+
+	public void setAddressNo(int addressNo) {
+		this.addressNo = addressNo;
+	}
 
 	public String getAddressContent() {
 		return addressContent;
@@ -13,8 +23,10 @@ public class Address {
 
 	@Override
 	public String toString() {
-		return "Address [addressContent=" + addressContent + "]";
+		return "Address [addressNo=" + addressNo + ", addressContent=" + addressContent + "]";
 	}
+
+	
 	
 	
 }

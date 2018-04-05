@@ -4,23 +4,33 @@ import java.sql.Date;
 
 public class Board {
 	private int boardNo;
-	private String memberId;
+	private String sessionMemberId;
 	private String boardTitle;
-	private String boardComment;
+	private String boardContent;
 	private Date boardDate;
-	
-	
+	public int getBoardNo() {
+		return boardNo;
+	}
+	public void setBoardNo(int boardNo) {
+		this.boardNo = boardNo;
+	}
+	public String getSessionMemberId() {
+		return sessionMemberId;
+	}
+	public void setSessionMemberId(String sessionMemberId) {
+		this.sessionMemberId = sessionMemberId;
+	}
 	public String getBoardTitle() {
 		return boardTitle;
 	}
 	public void setBoardTitle(String boardTitle) {
 		this.boardTitle = boardTitle;
 	}
-	public String getBoardComment() {
-		return boardComment;
+	public String getBoardContent() {
+		return boardContent;
 	}
-	public void setBoardComment(String boardComment) {
-		this.boardComment = boardComment;
+	public void setBoardContent(String boardContent) {
+		this.boardContent = boardContent;
 	}
 	public Date getBoardDate() {
 		return boardDate;
@@ -30,7 +40,8 @@ public class Board {
 	}
 	@Override
 	public String toString() {
-		return "Board [boardTitle=" + boardTitle + ", boardComment=" + boardComment + ", boardDate=" + boardDate + "]";
+		return "Board [boardNo=" + boardNo + ", sessionMemberId=" + sessionMemberId + ", boardTitle=" + boardTitle
+				+ ", boardContent=" + boardContent + ", boardDate=" + boardDate + "]";
 	}
 	
 	

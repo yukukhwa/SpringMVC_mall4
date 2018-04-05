@@ -1,9 +1,17 @@
 package com.test.mall4.member.service;
 
 public class Member {
+	private int memberNo;
 	private String memberId;
 	private String memberPw;
 	
+	
+	public int getMemberNo() {
+		return memberNo;
+	}
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
+	}
 	public String getMemberId() {
 		return memberId;
 	}
@@ -18,8 +26,9 @@ public class Member {
 	}
 	@Override
 	public String toString() {
-		return "Member [memberId=" + memberId + ", memberPw=" + memberPw + "]";
+		return "Member [memberNo=" + memberNo + ", memberId=" + memberId + ", memberPw=" + memberPw + "]";
 	}
+	
 	
 	
 }

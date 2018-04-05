@@ -7,11 +7,11 @@
 </head>
 <body>
 	<h1>addBoard</h1>
-		<form>
+		<form action="${pageContext.request.contextPath}/addBoard" method="post">
+			<input type="text" name="sessionMemberId" placeholder="id">
 			<input type="text" name="boardTitle" placeholder="게시글 제목을 입력해주세요">
 			<input type="text" name="boardContent" placeholder="게시글 내용을 입력해주세요">
 			<button type="submit">게시글등록</button>
 		</form>
-		
 </body>
 </html>
