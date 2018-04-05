@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,31 +17,33 @@
 				<th>
 					카테고리 이름
 				</th>
+				<th>
+					수정
+				</th>
+				<th>
+					삭제
+				</th>
 			</tr>			
 		</thead>
-		
 		<tbody>
-			<%-- <%
-				for(Category category : list){
-			%>
+			<c:forEach var="category" items="${list}">
 				<tr>
 					<td>
-						<%=category.getCategoryName() %>
-					</td> --%>
-					<td>
-						
+						${category.categoryNo}
 					</td>
-				</tr>
-				<tr>
 					<td>
-						
+						${category.categoryName}
 					</td>
+					<td>
+						<a href="#">수정</a>
+					</td>
+					<td>
+						<a href="#">삭제</a>
+					</td>
+					
 				</tr>
-			<%-- <%
-				}
-			%>	 --%>		
+			</c:forEach>
 		</tbody>
-		
 	</table>
 </body>
 </html>
