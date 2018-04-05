@@ -2,6 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
 <mapper namespace="com.test.mall4.member.service.MemberMapper"> 
+	<select id="selectMemberList" resultType="com.test.mall4.member.service.Member">
+		Select member_no as memberNo, member_id as memberId, member_pw as memberPw From member
+	</select>
 	<insert id="insertMember" parameterType="com.test.mall4.member.service.Member">
 		INSERT INTO member(
 			member_id
