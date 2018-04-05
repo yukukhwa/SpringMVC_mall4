@@ -12,11 +12,15 @@
 	
 	<!-- Application Loggers -->
 	<logger name="com.test.mall4">
-		<level value="info" />
+			<level value="info" />
 	</logger>
-	
+		
 	<!-- 3rdparty Loggers -->
 	<logger name="com.test.mall4.member.service">
+		<level value="debug" />
+	</logger>
+	
+	<logger name="com.test.mall4.category.service">
 		<level value="debug" />
 	</logger>
 	
