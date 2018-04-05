@@ -17,6 +17,7 @@ public class MemberController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 
+
 	@RequestMapping(value = {"/addMember"} , method=RequestMethod.GET)
 	public String insertMember() {
 		logger.info("MemberController get");
@@ -27,8 +28,7 @@ public class MemberController {
 	public String insertMember(Member member) {
 		logger.info("MemberController post");
 		logger.info("ID,PW: " + member.getMemberId() + " , " + member.getMemberPw());
-		String memberService = this.memberService.insertMember(member);
-		logger.info(memberService);		
+		this.memberService.insertMember(member);
 		return "redirect:/index";
 	}
 }

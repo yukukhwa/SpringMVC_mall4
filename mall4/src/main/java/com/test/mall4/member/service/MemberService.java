@@ -15,9 +15,10 @@ public class MemberService {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MemberService.class);
 	
-	public String insertMember(Member member) {
-	logger.info("MemberService insertMember호출");
-	String insertMember = this.memberDao.insertMember(member);
-	return "MemberService insertMember 리턴";	
+	public int insertMember(Member member) {
+	logger.debug("%s","MemberService insertMember호출"); // printf();
+	
+	int row = this.memberDao.insertMember(member);
+	return row;
 	}
 }
