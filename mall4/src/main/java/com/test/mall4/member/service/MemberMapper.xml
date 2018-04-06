@@ -45,7 +45,7 @@
 			,member_pw
 		) VALUES (
 			#{memberId}
-			,#{memberPw} <!-- set(?,?)의 EL같은 표현 -->
+			,#{memberPw}
 		)		
 	</insert>
 </mapper>

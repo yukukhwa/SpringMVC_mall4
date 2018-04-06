@@ -7,14 +7,15 @@
 </head>
 <body>
 	<h1>Index</h1>
-	<p>${loginMember.memberId}님 로그인 중</p>
-	<a href="${pageContext.request.contextPath}/login">로그인</a>
-	<a href="${pageContext.request.contextPath}/addAddress">주소추가</a>
-	<a href="${pageContext.request.contextPath}/addCategory">카테고리추가</a>
-	<a href="${pageContext.request.contextPath}/addItem">상품추가</a>
-	<a href="${pageContext.request.contextPath}/addMember">멤버추가</a>
-	<a href="${pageContext.request.contextPath}/getMemberList">멤버리스트보기</a>
-	<a href="${pageContext.request.contextPath}/addBoard">게시글등록</a>	
+	${loginMember.memberId}님 로그인 중&nbsp;&nbsp;
+	<a href="${pageContext.request.contextPath}/login">로그인</a><br> 
+	<a href="${pageContext.request.contextPath}/addAddress">주소등록</a><br>
+	<a href="${pageContext.request.contextPath}/addCategory">카테고리등록</a>&nbsp;
+	<a href="${pageContext.request.contextPath}/getCategoryList">카테고리리스트보기</a><br>
+	<a href="${pageContext.request.contextPath}/addItem">상품등록</a><br>
+	<a href="${pageContext.request.contextPath}/addMember">멤버등록</a>&nbsp;
+	<a href="${pageContext.request.contextPath}/getMemberList">멤버리스트보기</a><br>
+	<a href="${pageContext.request.contextPath}/addBoard">게시글등록</a>&nbsp;
 	<a href="${pageContext.request.contextPath}/getBoardList">게시글리스트보기</a>
 </body>
 </html>

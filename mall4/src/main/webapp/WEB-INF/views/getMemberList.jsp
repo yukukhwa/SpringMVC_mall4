@@ -9,7 +9,9 @@
 <body>
 	<h1>getMemberList</h1>
 	<select name="pagePerRow">
-		<option value=10 selected="selected">
+		<option value="10" selected="selected">10개씩 보기</option>
+		<option value="15">15개씩 보기</option>
+		<option value="20">20개씩 보기</option>
 	</select>
 	<table border="1">
 		<thead>
@@ -28,8 +30,14 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<p>리스트  ${model.list}</p>
-	<p>현재페이지 ${model.currentPage}</p>
-	<p>마지막페이지 ${model.lastPage}</p>	
+	<c:if test="${currentPage > 1}">
+	<a href="${pageContext.request.contextPath}/getMemberList?currentPage=${currentPage-1}">[이전]</a>
+	</c:if>
+	<c:forEach var="i" begin="1" end="${lastPage}" step="1">
+		<a href="${pageContext.request.contextPath}/getMemberList?currentPage=${i}">[${i}]</a>
+	</c:forEach>
+	<c:if test="${currentPage < lastPage}">
+	<a href="${pageContext.request.contextPath}/getMemberList?currentPage=${currentPage+1}">[다음]</a>
+	</c:if>
 </body>
 </html>

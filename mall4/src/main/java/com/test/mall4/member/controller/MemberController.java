@@ -1,6 +1,5 @@
 package com.test.mall4.member.controller;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -45,7 +44,7 @@ public class MemberController {
 	@RequestMapping(value= "/getMemberList", method=RequestMethod.GET)
 	public String selectMemberList(Model model
 										, @RequestParam(value="currentPage", defaultValue="1") int currentPage
-										, @RequestParam(value="pagePerRow") int pagePerRow) {
+										, @RequestParam(value="pagePerRow", defaultValue="10") int pagePerRow) {
 		Map<String, Object> map = memberService.selectMemberList(currentPage, pagePerRow);
 		//model.addAttribute("map",map); -> 서비스에서 풀어서 넘긴다
 		model.addAttribute("list", map.get("list"));		
