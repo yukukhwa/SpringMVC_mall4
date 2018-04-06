@@ -6,7 +6,9 @@
 <title>Index</title>
 </head>
 <body>
-	<h1>Index</h1>		
+	<h1>Index</h1>
+	<p>${loginMember.memberId}님 로그인 중</p>
+	<a href="${pageContext.request.contextPath}/login">로그인</a>
 	<a href="${pageContext.request.contextPath}/addAddress">주소추가</a>
 	<a href="${pageContext.request.contextPath}/addCategory">카테고리추가</a>
 	<a href="${pageContext.request.contextPath}/addItem">상품추가</a>

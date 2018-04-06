@@ -8,6 +8,9 @@
 </head>
 <body>
 	<h1>getMemberList</h1>
+	<select name="pagePerRow">
+		<option value=10 selected="selected">
+	</select>
 	<table border="1">
 		<thead>
 			<tr>
@@ -25,5 +28,8 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	<p>리스트  ${model.list}</p>
+	<p>현재페이지 ${model.currentPage}</p>
+	<p>마지막페이지 ${model.lastPage}</p>	
 </body>
 </html>
