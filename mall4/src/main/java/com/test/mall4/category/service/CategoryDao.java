@@ -1,6 +1,8 @@
 package com.test.mall4.category.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
@@ -19,8 +21,13 @@ public class CategoryDao {
 	// 상수
 	final String NS = "com.test.mall4.category.service.CategoryMapper.";
 	
-	public List<Category> selectCategoryList(){
-		return sqlSession.selectList(NS+"selectCategoryList");
+	public Map<String, Object> selectCategoryList(Map<String, Integer> map) {
+		List<Category> list = sqlSession.selectList(NS+"selectCategoryList", map);
+		int total = sqlSession.selectOne(NS+"totalCountCategory");
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		returnMap.put("list", list);
+		returnMap.put("total", total);
+		return returnMap;
 	}
 	
 	public int insertCategory(Category category) {

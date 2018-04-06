@@ -13,8 +13,8 @@ public class ItemService {
 	private static final Logger logger = LoggerFactory.getLogger(ItemService.class);
 	public String insertItem(Item item) {
 		logger.info("ItemService 호출");
-		String itemDao= this.itemDao.insertItem(item);
-		logger.info(itemDao);
+		//String itemDao= this.itemDao.insertItem(item);
+		//logger.info(itemDao);
 		return "ItemService 리턴";
 	}
 }

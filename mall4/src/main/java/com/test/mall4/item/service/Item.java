@@ -1,9 +1,22 @@
 package com.test.mall4.item.service;
 
 public class Item {
+	private int itemNo;
+	private int categoryNo;
 	private String itemName;
 	private String itemPrice;
-	
+	public int getItemNo() {
+		return itemNo;
+	}
+	public void setItemNo(int itemNo) {
+		this.itemNo = itemNo;
+	}
+	public int getCategoryNo() {
+		return categoryNo;
+	}
+	public void setCategoryNo(int categoryNo) {
+		this.categoryNo = categoryNo;
+	}
 	public String getItemName() {
 		return itemName;
 	}
@@ -18,6 +31,7 @@ public class Item {
 	}
 	@Override
 	public String toString() {
-		return "Item [itemName=" + itemName + ", itemPrice=" + itemPrice + "]";
+		return "Item [itemNo=" + itemNo + ", categoryNo=" + categoryNo + ", itemName=" + itemName + ", itemPrice="
+				+ itemPrice + "]";
 	}
 }

@@ -1,6 +1,6 @@
 package com.test.mall4.category.controller;
 
-import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.test.mall4.category.service.Category;
 import com.test.mall4.category.service.CategoryService;
@@ -19,10 +20,14 @@ public class CategoryController {
 	private CategoryService categoryService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(CategoryController.class);
+	
 	@RequestMapping(value="/getCategoryList", method=RequestMethod.GET)
-	public String selectCategoryList(Model model) {
-		List<Category> list = categoryService.selectCategoryList();
-		model.addAttribute("list",list);
+	public String selectCategoryList(Model model, @RequestParam(value="currentPage",defaultValue="1") int currentPage,@RequestParam(value="pagePerRow",defaultValue="3") int pagePerRow) {
+		Map<String, Object> map = categoryService.selectCategoryList(currentPage, pagePerRow);
+		model.addAttribute("list", map.get("list"));
+		model.addAttribute("lastPage",map.get("lastPage"));
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("pagePerRow", pagePerRow);
 		return "getCategoryList";
 	}
 	

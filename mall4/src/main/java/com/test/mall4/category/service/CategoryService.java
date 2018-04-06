@@ -1,6 +1,7 @@
 package com.test.mall4.category.service;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,11 +14,50 @@ public class CategoryService {
 	private CategoryDao categoryDao;
 	
 	private static final Logger logger = LoggerFactory.getLogger(CategoryService.class);
-	
-	public List<Category> selectCategoryList(){
-		return categoryDao.selectCategoryList();
-	}
 
+	/**
+	 * 카테고리 리스트 출력 메서드(+페이징기법)
+	 * @param currentPage(현재페이지)
+	 * @param pagePerRow(한 화면에서 보여줄 리스트 갯수)
+	 * @return Map(마지막 페이지,카테고리 리스트)
+	 */
+	public Map<String, Object> selectCategoryList(int currentPage,int pagePerRow) {
+		/*
+		 * 한 화면에 보여줄 리스트 갯수 = 10개
+		 * 현재 페이지 = 1, 리스트 시작번호 = 0
+		 *  (1-1)*10 = 0
+		 * 현재 페이지 = 2, 리스트 시작번호 = 10
+		 *  (2-1)*10 = 10
+		 * 현재 페이지 = 3, 리스트 시작번호 = 20
+		 * 	(3-1)*10 = 20
+		 */
+		int beginRow = (currentPage-1)*pagePerRow;
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("beginRow", beginRow);
+		map.put("pagePerRow", pagePerRow);
+		Map<String, Object> returnMap = categoryDao.selectCategoryList(map);
+		int total = (Integer) returnMap.get("total");
+		/*
+		 * 카테고리 전체 리스트 갯수(9) / 한 화면에서 보여줄 리스트 갯수(10) = 0.9
+		 * 라스트페이지는 1p
+		 * 	나누어 떨어지지 않으면 몫에 +1을 해준값이 라스트 페이지가 된다 (0+1=1)
+		 * 카테고리 전체 리스트 갯수(10) / 한 화면에서 보여줄 리스트 갯수(10) = 1
+		 * 라스트페이지는 1p
+		 * 	나누어 떨어질때는 몫이 라스트페이지가 된다 (1)
+		 * 카테고리 전체 리스트 갯수(11) / 한 화면에서 보여줄 리스트 갯수(10) = 1.1
+		 * 라스트페이지는 2p
+		 *  나누어 떨어지지 않으면 몫에 +1을 해준값이 라스트 페이지가 된다 (1+1=2)
+		 */
+		int lastPage = total/pagePerRow; // 자바에서 나눗셈 표현법 ex) 2/2=1, 1/2=0 이렇게 몫만 나온다
+		if(total%pagePerRow != 0) { // 자바에서 나머지 표현법 ex) 2%2=0, 1%2=1 이렇게 나머지만 나온다
+			++lastPage;
+		}
+		Map<String, Object> returnMap2 = new HashMap<String, Object>();
+		returnMap2.put("lastPage", lastPage);
+		returnMap2.put("list", returnMap.get("list"));
+		return returnMap2;
+	}
+	
 	public int insertCategory(Category category) {
 		logger.info("CategoryService 호출");
 		int categoryDao = this.categoryDao.insertCategory(category);
