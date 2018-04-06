@@ -2,6 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
 <mapper namespace="com.test.mall4.board.service.BoardMapper">
+	
+	<!-- 로그인 -->
+	
+	<!-- 수정 -->
+	
+	<!-- 삭제 -->
+	
+	
+	<!-- board리스트의 전체 갯수 -->
+	<select id="totalCountBoard" 
+		resultType="Integer">
+		SELECT count(*) FROM board
+	</select>
+	
+	<!-- boardlist + 페이징 -->
+	<select id="selectBoardList" 
+		parameterType="java.util.Map"
+		resultType="com.test.mall4.board.service.Board">
+		SELECT 
+			board_no AS boardNo
+			,member_id AS sessionMemberId
+			,board_title AS boardTitle
+			,board_content AS boardContent
+			,board_date AS boardDate 
+			FROM board
+			ORDER BY board_no DESC
+			LIMIT #{beginRow}, #{pagePerRow}
+	</select>
+	
+	<!-- board게시글 추가 -->
 	<insert id="insertBoard" parameterType="com.test.mall4.board.service.Board">
 		INSERT INTO board
 		(member_id,board_title, board_content, board_date)
