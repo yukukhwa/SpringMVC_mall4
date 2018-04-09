@@ -16,21 +16,37 @@ public class BoardService {
 	
 	@Autowired private BoardDao boardDao;
 	
+	public Board selectBoardOne(Board board) {
+		return boardDao.selectBoardOne(board);
+	}
+	
+	public int deleteBoard(Board board) {
+		int row = boardDao.deleteBoard(board);
+		return row;
+	}
+	
 	public Map<String, Object> selectBoardList(int currentPage, int pagePerRow) {
+		logger.info("BoardService selectBoardList 호출");
 		//1. currentPage를 beginPage로
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("beginPage", (currentPage-1)*pagePerRow);
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		// 시작페이지 구한다
+		int beginRow = (currentPage-1)*pagePerRow;
+		// 구한 시작페이지와 넘겨받은 pagePerRow를 map에다 저장한다
+		map.put("beginRow", beginRow);
 		map.put("pagePerRow", pagePerRow);
+		List<Board> list = boardDao.selectBoardList(map);
 		//2. 카운트
+		// dao에 있는 totalCount메서드의 결과를 boardCount에 저장
 		int boardCount = boardDao.totalCountBoard();
-		int lastPage = 0;
+		int lastPage = boardCount/pagePerRow;
+		// 총갯수와 pagePerRow의 나머지가 0이 아니라면 한개씩 더해준다. 
 		if(boardCount%pagePerRow != 0) {
 			lastPage++;
 		}
-		List<Board> list = boardDao.selectBoardList();
-		map.put("lastPage", lastPage);
-		map.put("list", list);
-		return map;
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		returnMap.put("lastPage", lastPage);
+		returnMap.put("list", list);
+		return returnMap;
 	}
 	
 	//Board추가

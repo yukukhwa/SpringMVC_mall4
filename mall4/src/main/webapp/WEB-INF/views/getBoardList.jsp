@@ -29,14 +29,37 @@
 					<td>${board.boardTitle}</td>
 					<td>${board.boardContent}</td>
 					<td>${board.boardDate}</td>
-					<td></td>
-					<td></td>
+					<td>
+						<a href="${pageContext.request.contextPath}/updateBoard?boardNo=${board.boardNo}">수정</a>
+					</td>
+					<td>
+						<a href="${pageContext.request.contextPath}/deleteBoard?boardNo=${board.boardNo}">삭제</a>
+					</td>
 				</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-	</form>
-	
-
+		</form>
+		<form>
+			<select name="pagePerRow">
+				<option value="5">5개씩 보기</option>
+				<option value="10">10개씩 보기</option>
+				<option value="15">15개씩 보기</option>
+				<option value="20">20개씩 보기</option>
+			</select>
+			<button type="submit">적용하기</button>
+		</form>
+			<c:if test="${currentPage != 1}">
+				<a href="${pageContext.request.contextPath}/getBoardList?currentPage=1">[처음으로]</a>
+			</c:if>
+			<c:if test="${currentPage > 1}">
+				<a href="${pageContext.request.contextPath}/getBoardList?currentPage=${currentPage-1}">[이전]</a>
+			</c:if>
+			<c:if test="${currentPage < lastPage}">
+				<a href="${pageContext.request.contextPath}/getBoardList?currentPage=${currentPage+1}">[다음]</a>
+			</c:if>
+			<c:if test="${currentPage != lastPage}">
+				<a href="${pageContext.request.contextPath}/getBoardList?currentPage=${lastPage}">[마지막으로]</a>
+			</c:if>
 </body>
 </html>

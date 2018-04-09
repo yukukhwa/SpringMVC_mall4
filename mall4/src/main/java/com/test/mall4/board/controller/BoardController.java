@@ -1,6 +1,5 @@
 package com.test.mall4.board.controller;
 
-import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -22,6 +21,20 @@ public class BoardController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 	
+	@RequestMapping(value = {"/updateBoard"}, method=RequestMethod.GET)
+	public String selectBoardOne(Model model, Board board) {
+		logger.info("BoardController selectBoardOne 호출");
+		model.addAttribute("board", boardService.selectBoardOne(board));
+		return "updateBoard";
+	}
+	
+	@RequestMapping(value = {"/deleteBoard"}, method=RequestMethod.GET)
+	public String deleteBoard(Board board) {
+		logger.info("BoardController deleteBoard 호출");
+		boardService.deleteBoard(board);
+		return "redirect:/getBoardList";
+	}
+	
 	// Boardlist 페이징 처리 마무리하기, 로그인
 	@RequestMapping(value = {"/getBoardList"}, method=RequestMethod.GET)
 	public String selectBoardList(Model model
@@ -30,9 +43,9 @@ public class BoardController {
 		logger.info("BoardController insertBoard Get 호출");
 		Map<String, Object> map = boardService.selectBoardList(currentPage, pagePerRow);
 		model.addAttribute("currentPage", currentPage);
-		model.addAttribute("pagePerRow", pagePerRow);
-		/*model.addAttribute("lastPage", lastPage);*/
-		model.addAttribute("list", map);
+		model.addAttribute("pagePerRow", pagePerRow );
+		model.addAttribute("lastPage", map.get("lastPage"));
+		model.addAttribute("list", map.get("list"));
 		return "getBoardList";
 	}
 	

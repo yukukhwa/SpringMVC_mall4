@@ -16,20 +16,28 @@ public class BoardDao {
 	
 	final String NS = "com.test.mall4.board.service.BoardMapper.";
 	
+	//수정화면 가져오기
+	public Board selectBoardOne(Board board) {
+		logger.info("BoardDao selectBoardOne 호출");
+		return sqlSession.selectOne(NS+"selectBoardOne", board);
+	}
+	
 	//삭제처리
-	
-	//수정처리
-	
+	public int deleteBoard(Board board) {
+		int row = sqlSession.delete(NS+"deleteBoard", board);
+		return row;
+	}
 	
 	// 카운트 
 	public int totalCountBoard() {
+		logger.info("BoardDao totalCountBoard 호출");
 		return sqlSession.selectOne(NS+"totalCountBoard");
 	}
 	
-	// 리스트
-	public List<Board> selectBoardList(){
+	// 리스트 
+	public List<Board> selectBoardList(Map<String, Integer> map){
 		logger.info("BoardDao selectBoardList 호출");
-		return sqlSession.selectList(NS+"selectBoardList");
+		return sqlSession.selectList(NS+"selectBoardList", map);
 	}
 	
 	// Board를 추가하는 메서드
