@@ -21,6 +21,13 @@ public class BoardController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 	
+	@RequestMapping(value = {"/updateBoard"}, method=RequestMethod.POST)
+	public String updateBoard(Board board) {
+		logger.info("BoardController updateBoard 호출");
+		boardService.updateBoard(board);
+		return "redirect:/getBoardList";
+	}
+	
 	@RequestMapping(value = {"/updateBoard"}, method=RequestMethod.GET)
 	public String selectBoardOne(Model model, Board board) {
 		logger.info("BoardController selectBoardOne 호출");

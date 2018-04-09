@@ -16,6 +16,10 @@ public class BoardService {
 	
 	@Autowired private BoardDao boardDao;
 	
+	public int updateBoard(Board board) {
+		return boardDao.updateBoard(board);
+	}
+	
 	public Board selectBoardOne(Board board) {
 		return boardDao.selectBoardOne(board);
 	}

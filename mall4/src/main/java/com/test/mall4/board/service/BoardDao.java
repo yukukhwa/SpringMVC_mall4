@@ -16,6 +16,10 @@ public class BoardDao {
 	
 	final String NS = "com.test.mall4.board.service.BoardMapper.";
 	
+	public int updateBoard(Board board) {
+		return sqlSession.update(NS+"updateBoard", board);
+	}
+	
 	//수정화면 가져오기
 	public Board selectBoardOne(Board board) {
 		logger.info("BoardDao selectBoardOne 호출");

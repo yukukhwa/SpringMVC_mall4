@@ -8,10 +8,10 @@
 	<!-- 수정처리 -->
 	<update id="updateBoard" parameterType="com.test.mall4.board.service.Board">
 		UPDATE board
-			SET board_no=NULL,
-			member_id='',
-			board_title='',
-			board_content=''
+			SET board_no=#{boardNo},
+			member_id=#{sessionMemberId}
+			,board_title=#{boardTitle}
+			,board_content=#{boardContent}
 			,board_date=NOW()
 			WHERE board_no=#{boardNo}
 	</update>
