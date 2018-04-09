@@ -14,7 +14,30 @@ public class CategoryService {
 	private CategoryDao categoryDao;
 	
 	private static final Logger logger = LoggerFactory.getLogger(CategoryService.class);
-
+	/**
+	 * 선택한 카테고리 삭제처리
+	 * @param category
+	 * @return 삭제처리된 행의 개수
+	 */
+	public int deleteCategory(Category category) {
+		return categoryDao.deleteCategory(category);
+	}
+	/**
+	 * 수정 준비가 완료된 카테고리 수정처리
+	 * @param category
+	 * @return 수정시킨 행의 개수
+	 */
+	public int updateCategory(Category category) {
+		return categoryDao.updateCategory(category);
+	}
+	/**
+	 * 수정을 원하는 카테고리 한개에 해당하는 데이터 출력
+	 * @param category
+	 * @return 출력된 카테고리 한개의 데이터
+	 */
+	public Category selectCategoryOne(Category category) {
+		return categoryDao.selectCategoryOne(category);
+	}
 	/**
 	 * 카테고리 리스트 출력 메서드(+페이징기법)
 	 * @param currentPage(현재페이지)
@@ -57,7 +80,11 @@ public class CategoryService {
 		returnMap2.put("list", returnMap.get("list"));
 		return returnMap2;
 	}
-	
+	/**
+	 * 카테고리 등록 메서드
+	 * @param category
+	 * @return 등록시킨 행의 개수
+	 */
 	public int insertCategory(Category category) {
 		logger.info("CategoryService 호출");
 		int categoryDao = this.categoryDao.insertCategory(category);

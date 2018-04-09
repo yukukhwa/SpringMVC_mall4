@@ -35,10 +35,10 @@
 						${category.categoryName}
 					</td>
 					<td>
-						<a href="#">수정</a>
+						<a href="${pageContext.request.contextPath}/updateCategory?categoryNo=${category.categoryNo}">수정</a>
 					</td>
 					<td>
-						<a href="#">삭제</a>
+						<a href="${pageContext.request.contextPath}/deleteCategory?categoryNo=${category.categoryNo}">삭제</a>
 					</td>
 				</tr>
 			</c:forEach>
@@ -52,11 +52,11 @@
 		</select>
 		<button type="submit">적용하기</button>
 	</form>
-	<c:if test="${currentPage != 1}">
+	<c:if test="${currentPage > 1}">
 		<a href="${pageContext.request.contextPath}/getCategoryList?currentPage=1&pagePerRow=${pagePerRow}">[처음으로]</a>
 		<a href="${pageContext.request.contextPath}/getCategoryList?currentPage=${currentPage-1}&pagePerRow=${pagePerRow}">[이전]</a>
 	</c:if>
-	<c:if test="${currentPage != lastPage}">
+	<c:if test="${currentPage < lastPage}">
 		<a href="${pageContext.request.contextPath}/getCategoryList?currentPage=${currentPage+1}&pagePerRow=${pagePerRow}">[다음]</a>
 		<a href="${pageContext.request.contextPath}/getCategoryList?currentPage=${lastPage}&pagePerRow=${pagePerRow}">[마지막으로]</a>
 	</c:if>

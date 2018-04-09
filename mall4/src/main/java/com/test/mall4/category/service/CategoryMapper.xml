@@ -4,6 +4,25 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="com.test.mall4.category.service.CategoryMapper">
+	<!-- 선택한 카테고리 삭제처리 -->
+	<delete id="deleteCategory" parameterType="com.test.mall4.category.service.Category">
+		DELETE FROM category WHERE category_no=#{categoryNo}
+	</delete>
+	<!-- 수정 준비가 완료된 카테고리 수정처리 -->
+	<update id="updateCategory" parameterType="com.test.mall4.category.service.Category">
+		UPDATE category
+		SET
+			category_name=#{categoryName}
+		WHERE category_no=#{categoryNo}
+	</update>
+	<!-- 수정을 원하는 카테고리 한개에 해당하는 데이터 출력 -->
+	<select id="selectCategoryOne" parameterType="com.test.mall4.category.service.Category" resultType="com.test.mall4.category.service.Category">
+		select
+			category_no as categoryNo
+			,category_name as categoryName
+		from category
+		where category_no = #{categoryNo}
+	</select>
 	<!-- 카테고리 리스트 전체 갯수 출력 -->
 	<select id="totalCountCategory" resultType="Integer">
 		select COUNT(*) from category
