@@ -20,6 +20,10 @@ public class CategoryDao {
 	
 	// <mapper namespace="com.test.mall4.category.service.CategoryMapper"> : 상수
 	final String NS = "com.test.mall4.category.service.CategoryMapper.";
+	
+	public List<Category> selectCategoryAllList() {
+		return sqlSession.selectList(NS+"selectCategoryAllList");
+	}
 	/**
 	 * 선택한 카테고리 삭제처리
 	 * @param category

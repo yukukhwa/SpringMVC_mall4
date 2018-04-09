@@ -4,6 +4,13 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="com.test.mall4.category.service.CategoryMapper">
+	<select id="selectCategoryAllList" resultType="com.test.mall4.category.service.Category">
+		select
+			category_no as categoryNo
+			,category_name as categoryName
+		from category
+		ORDER BY category_no DESC
+	</select>
 	<!-- 선택한 카테고리 삭제처리 -->
 	<delete id="deleteCategory" parameterType="com.test.mall4.category.service.Category">
 		DELETE FROM category WHERE category_no=#{categoryNo}

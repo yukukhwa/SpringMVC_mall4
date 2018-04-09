@@ -1,6 +1,7 @@
 package com.test.mall4.category.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -14,6 +15,10 @@ public class CategoryService {
 	private CategoryDao categoryDao;
 	
 	private static final Logger logger = LoggerFactory.getLogger(CategoryService.class);
+	
+	public List<Category> selectCategoryAllList() {
+		return categoryDao.selectCategoryAllList();
+	}
 	/**
 	 * 선택한 카테고리 삭제처리
 	 * @param category

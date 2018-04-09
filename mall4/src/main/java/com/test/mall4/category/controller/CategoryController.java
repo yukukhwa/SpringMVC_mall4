@@ -1,5 +1,6 @@
 package com.test.mall4.category.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -21,6 +22,16 @@ public class CategoryController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(CategoryController.class);
 	
+	@RequestMapping(value="/selectCategoryAllList", method=RequestMethod.GET)
+	public String selectCategoryAllList(Model model) {
+		List<Category> list = categoryService.selectCategoryAllList();
+		
+		logger.debug("test--- list", list);
+		logger.info("test info --- list ::: ", list);
+		
+		model.addAttribute("list", list);
+		return "/categoryList";
+	}
 	/**
 	 * "/deleteCategory"주소를 get방식으로 호출할때 카테고리 삭제 처리 관련 컨트롤
 	 * @param category
