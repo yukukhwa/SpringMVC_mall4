@@ -17,6 +17,21 @@ public class MemberDao {
 	// final : 객체 참조변수를 변경하지 못하게 하는 접근제한자
 	final String NS = "com.test.mall4.member.service.MemberMapper.";
 	
+	// 회원삭제
+	public int deleteMember(Member member) {
+		return sqlSession.delete(NS+"deleteMember", member);
+	}
+	
+	// 수정된 데이터 셋팅하는 메서드
+	public int updateMember(Member member) {
+		return sqlSession.update(NS+"updateMember", member);
+	}
+	
+	// 선택한 회원 수정화면으로 게팅하는 메서드
+	public Member selectMemberOne(Member member) {
+		return sqlSession.selectOne(NS+"selectMemberOne", member);		
+	}
+	
 	// 일치하는 ID와 PW를 셀렉트하는 메서드
 	public Member selectMemberById(Member member){
 		return sqlSession.selectOne(NS+"selectMemberById", member);

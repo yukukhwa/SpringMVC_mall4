@@ -26,6 +26,8 @@
 				<tr>
 					<td>${member.memberId}</td>
 					<td>${member.memberPw}</td>
+					<td><a href="${pageContext.request.contextPath}/updateMember?memberNo=${member.memberNo}">수정버튼</a></td>
+					<td><a href="${pageContext.request.contextPath}/deleteMember?memberNo=${member.memberNo}">삭제버튼</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

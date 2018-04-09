@@ -4,6 +4,34 @@
 <mapper namespace="com.test.mall4.member.service.MemberMapper"> 
 	<!-- 테이블 컬럼명과 객체 필드명의 불일치 해결을 위해 별명을 사용 -->
 	
+	<!-- 회원 삭제 처리 -->
+	<delete id="deleteMember"
+			parameterType="com.test.mall4.member.service.Member"
+			>
+		DELETE FROM member WHERE member_no=#{memberNo}
+	</delete>
+	
+	<!-- 회원 수정 처리 -->
+	<update id="updateMember"
+			parameterType="com.test.mall4.member.service.Member"
+			>
+		UPDATE member
+		SET member_pw=#{memberPw}
+		WHERE member_no=#{memberNo}
+	</update>
+	
+	<!-- 수정할 회원 선택 -->
+	<select id="selectMemberOne"
+			parameterType="com.test.mall4.member.service.Member"
+			resultType="com.test.mall4.member.service.Member"
+			>
+		SELECT member_no AS memberNo
+				,member_id AS memberId
+				,member_pw AS memberPw
+		FROM member 
+		WHERE member_no=#{memberNo}
+	</select>
+	
 	<!-- 회원 총 레코드수 -->
 	<select id="totalCountMember"
 			resultType="Integer"

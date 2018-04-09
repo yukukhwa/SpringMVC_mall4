@@ -16,7 +16,22 @@ public class MemberService {
 	@Autowired
 	private MemberDao memberDao;	
 	private static final Logger logger = LoggerFactory.getLogger(MemberService.class);
+	// 회원 삭제
+	public int deleteMember(Member member) {
+		return memberDao.deleteMember(member);
+	}
 	
+	// 수정할 회원정보 처리
+	public int updateMember(Member member) {
+		return memberDao.updateMember(member);
+	}
+	
+	// 수정할 회원정보 가져오는 메서드
+	public Member selectMemberOne(Member member) {
+		return memberDao.selectMemberOne(member);
+	}
+	
+	// 로그인
 	public Member selectMemberById(Member member){
 		return memberDao.selectMemberById(member);
 	}
@@ -48,8 +63,9 @@ public class MemberService {
 		return returnMap;
 	}
 	
+	// 회원 등록
 	public int insertMember(Member member) {
-		logger.debug("%s","MemberService insertMember호출"); // printf();
+		logger.debug("%s","MemberService insertMember호출");
 		return memberDao.insertMember(member);
 	}
 }
