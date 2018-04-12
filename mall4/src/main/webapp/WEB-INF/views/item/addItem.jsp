@@ -32,7 +32,7 @@
 <body>
 	<h1>addItem</h1>
 	<form action="${pageContext.request.contextPath}/addItem" method="post">
-		<select id="categoryList" name="categoryNo">
+		<select id="categoryList" name="category.categoryNo">
 			<option>[카테고리를 선택해주세요]</option>
 		</select>
 		상품이름: <input type="text" name="itemName">

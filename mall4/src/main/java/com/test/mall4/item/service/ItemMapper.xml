@@ -3,19 +3,31 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.test.mall4.item.service.ItemMapper">
+
+<resultMap type="com.test.mall4.item.service.Item" id="item">
+	<result column="itemNo" property="itemNo"/>
+	<result column="itemName" property="itemName"/>
+	<result column="itemPrice" property="itemPrice"/>
+	<collection property="category" ofType="com.test.mall4.category.service.Category">
+		<id column="categoryNo" property="categoryNo"/>
+		<id column="categoryName" property="categoryName"/>
+	</collection>
+</resultMap>
+
 <delete id="deleteItem" parameterType="com.test.mall4.item.service.Item">
-DELETE FROM item WHERE item_no=#{itemNo}
+	DELETE FROM item WHERE item_no=#{itemNo}
 </delete>
 
 <update id="updateItem" parameterType="com.test.mall4.item.service.Item">
 	UPDATE item
 	SET
-		category_no = #{categoryNo}
+		category_no = #{category.categoryNo}
 		,item_name = #{itemName}
 		,item_price = #{itemPrice}
 	WHERE 
 		item_no= #{itemNo}
 </update>
+
 <select id="selectItemOne" parameterType="com.test.mall4.item.service.Item" resultType="com.test.mall4.item.service.Item">
 	select
 		item_no as itemNo
@@ -25,17 +37,21 @@ DELETE FROM item WHERE item_no=#{itemNo}
 	from item
 	where item_no=#{itemNo}
 </select>
+
 <select id="totalCountItem" resultType="Integer">
 	select count(*) from item
 </select>
+
 <!-- 화면에 보여줄 리스트  -->
-<select id="selectItemList" parameterType="java.util.Map" resultType="com.test.mall4.item.service.Item">
+<select id="selectItemList" parameterType="java.util.Map" resultMap="item">
 	select 
-		item_no as itemNo
-		,category_no as categoryNo
-		,item_name as itemName
-		,item_price as itemPrice 
-	from item 
+		item.item_no as itemNo
+		,category.category_no as categoryNo
+		,category.category_name as categoryName
+		,item.item_name as itemName
+		,item.item_price as itemPrice 
+	from item join category
+	on item.category_no = category.category_no
 	order by item_no DESC 
 	limit #{beginRow},#{pagePerRow}
 </select>
@@ -46,7 +62,7 @@ INSERT INTO item(
 	, item_name
 	, item_price)
 	VALUES(
-		#{categoryNo}
+		#{category.categoryNo}
 		, #{itemName}
 		, #{itemPrice}
 	)

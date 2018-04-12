@@ -26,7 +26,7 @@
 					상품넘버
 				</th>
 				<th>
-					카테고리넘버
+					카테고리명
 				</th>
 				<th>
 					상품명
@@ -49,7 +49,7 @@
 						${item.itemNo}
 					</td>
 					<td>
-						${item.categoryNo}
+						${item.category.categoryName}
 					</td>
 					<td>
 						${item.itemName}

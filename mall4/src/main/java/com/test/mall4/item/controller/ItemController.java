@@ -59,7 +59,7 @@ public class ItemController {
 		logger.info("ItemController post호출");
 		logger.info(item.getItemName());
 		logger.info(item.getItemPrice());
-		logger.info(String.valueOf(item.getCategoryNo()));
+		logger.info(String.valueOf(item.getCategory().getCategoryNo()));
 		int row = itemService.insertItem(item);
 		logger.info(String.valueOf(row));
 		return "redirect:/index";

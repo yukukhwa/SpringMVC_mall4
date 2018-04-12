@@ -21,7 +21,7 @@
 				console.log(msg[i].categoryName + '<-- msg.categoryName');
 				$('select#categoryList').append('<option value="'+msg[i].categoryNo+'">'+msg[i].categoryName+'</option>');
 			}
-			$('select#categoryList').val(${item.categoryNo});
+			$('select#categoryList').val(${item.category.categoryNo});
 		});
 		 
 		request.fail(function( jqXHR, textStatus ) {
@@ -38,7 +38,7 @@
 			<thead>
 				<tr>
 					<th>
-						카테고리넘버
+						카테고리명
 					</th>
 					<th>
 						상품명
@@ -51,7 +51,7 @@
 			<tbody>
 				<tr>
 					<td>
-						<select id="categoryList" name="categoryNo">
+						<select id="categoryList" name="category.categoryNo">
 						</select>
 					</td>
 					<td>
