@@ -45,10 +45,10 @@ public class BoardService {
 		List<Board> list = boardDao.selectBoardList(map);
 		//2. 카운트
 		// dao에 있는 totalCount메서드의 결과를 boardCount에 저장
-		int boardCount = boardDao.totalCountBoard();
-		int lastPage = boardCount/pagePerRow;
+		int total = boardDao.totalCountBoard();
+		int lastPage = total/pagePerRow;
 		// 총갯수와 pagePerRow의 나머지가 0이 아니라면 한개씩 더해준다. 
-		if(boardCount%pagePerRow != 0) {
+		if(total%pagePerRow != 0) {
 			lastPage++;
 		}
 		

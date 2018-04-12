@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.text.mall4.address.service.AddressMapper">
+
+<!-- 주소 수정처리 -->
+<update id="updateAddress" parameterType="com.test.mall4.address.service.Address">
+	UPDATE address
+	SET
+		address_no=#{addressNo}
+		,member_no=#{memberNo}
+		,address_content=#{addressContent}
+	WHERE address_no=#{addressNo}
+</update>
+
+<!-- 주소 수정화면 가져오기 -->
+<select id="selectAddressOne" parameterType="com.test.mall4.address.service.Address"
+								resultType="com.test.mall4.address.service.Address">
+	SELECT address_no AS addressNo
+			, member_no AS memberNo
+			, address_content AS addressContent
+	FROM address
+	WHERE address_no=#{addressNo} 
+</select>
+
+<!-- 주소 삭제처리 -->
+<delete id="deleteAddress" parameterType="com.test.mall4.address.service.Address">
+	DELETE FROM address WHERE address_no=#{addressNo}
+</delete>
+
+<!-- 주소 갯수 카운트 -->
+<select id="totalCountAddress" resultType="Integer">
+	SELECT count(*) FROM address;
+</select>
+
+<!-- 주소리스트 조회  -->
+<select id="selectAddressList" parameterType="com.test.mall4.address.service.Address"
+								resultType="com.test.mall4.address.service.Address">
+	SELECT address_no AS addressNo
+			, member_no AS memberNo
+			, address_content AS addressContent 
+	FROM address
+	ORDER BY address_no DESC
+	LIMIT #{beginRow}, #{pagePerRow}
+</select>
+
+<!--주소 등록  -->
+<insert id="insertAddress" parameterType="com.test.mall4.address.service.Address">
+	INSERT INTO address
+		(member_no, address_content)
+		VALUES (#{memberNo}, #{addressContent})
+</insert>
+
+</mapper>

@@ -16,13 +16,13 @@ public class BoardDao {
 	
 	final String NS = "com.test.mall4.board.service.BoardMapper.";
 	
+	//수정화면
 	public int updateBoard(Board board) {
 		return sqlSession.update(NS+"updateBoard", board);
 	}
 	
 	//수정화면 가져오기
 	public Board selectBoardOne(Board board) {
-		logger.info("BoardDao selectBoardOne 호출");
 		return sqlSession.selectOne(NS+"selectBoardOne", board);
 	}
 	
@@ -34,13 +34,11 @@ public class BoardDao {
 	
 	// 카운트 
 	public int totalCountBoard() {
-		logger.info("BoardDao totalCountBoard 호출");
 		return sqlSession.selectOne(NS+"totalCountBoard");
 	}
 	
 	// 리스트 
 	public List<Board> selectBoardList(Map<String, Integer> map){
-		logger.info("BoardDao selectBoardList 호출");
 		return sqlSession.selectList(NS+"selectBoardList", map);
 	}
 	

@@ -55,7 +55,7 @@
 				<value>classpath:com/test/mall4/category/service/CategoryMapper.xml</value>
 				<value>classpath:com/test/mall4/board/service/BoardMapper.xml</value>
 				<value>classpath:com/test/mall4/item/service/ItemMapper.xml</value>
-				<!-- <value>classpath:com/test/mall4/address/service/AddressMapper.xml</value> -->
+				<value>classpath:com/test/mall4/address/service/AddressMapper.xml</value>
 			</list>
 		</property>
 	</bean>

@@ -8,6 +8,7 @@
 <body>
 	<h1>addAddress</h1>
 		<form action="${pageContext.request.contextPath}/addAddress" method="post">
+			<input type="hidden" name="memberNo" value="${loginMember.memberNo}">
 			주소 : <input type="text" name="addressContent" placeholder="주소를 입력해주세요">
 			<button type="submit">주소등록</button>
 		</form>
