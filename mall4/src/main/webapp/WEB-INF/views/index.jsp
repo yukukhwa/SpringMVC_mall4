@@ -8,18 +8,24 @@
 </head>
 <body>
 	<h1>Index</h1>
-	
-	${loginMember.memberNo} , ${loginMember.memberId}님 로그인 중&nbsp;&nbsp;
-	<a href="${pageContext.request.contextPath}/login">로그인</a><br> 
+	<c:choose>
+		<c:when test="${loginMember.memberNo != null}">	
+			${loginMember.memberId}님 로그인하셨습니다. &nbsp;&nbsp;
+			<a href="${pageContext.request.contextPath}/logout">로그아웃</a><br>
+		</c:when>
+		<c:otherwise>
+		<a href="${pageContext.request.contextPath}/login">로그인</a><br>
+		</c:otherwise>
+	</c:choose>	 
 	<a href="${pageContext.request.contextPath}/addAddress">주소등록</a>
-	<a href="${pageContext.request.contextPath}/getAddressList">주소리스트보기</a><br>
+	<a href="${pageContext.request.contextPath}/getAddressList">주소리스트보기</a>(로그인필요)<br>
 	<a href="${pageContext.request.contextPath}/addCategory">카테고리등록</a>&nbsp;
 	<a href="${pageContext.request.contextPath}/getCategoryList">카테고리리스트보기</a><br>
 	<a href="${pageContext.request.contextPath}/addItem">상품등록</a>
-	<a href="${pageContext.request.contextPath}/getItemList">상품리스트보기</a><br>
+	<a href="${pageContext.request.contextPath}/getItemList">상품리스트보기</a>(로그인필요)<br>
 	<a href="${pageContext.request.contextPath}/addMember">멤버등록</a>&nbsp;
 	<a href="${pageContext.request.contextPath}/getMemberList">멤버리스트보기</a><br>
 	<a href="${pageContext.request.contextPath}/addBoard">게시글등록</a>&nbsp;
-	<a href="${pageContext.request.contextPath}/getBoardList">게시글리스트보기</a>
+	<a href="${pageContext.request.contextPath}/getBoardList">게시글리스트보기</a>(로그인필요)
 </body>
 </html>

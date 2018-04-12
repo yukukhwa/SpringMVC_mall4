@@ -16,6 +16,8 @@ public class MemberService {
 	@Autowired
 	private MemberDao memberDao;	
 	private static final Logger logger = LoggerFactory.getLogger(MemberService.class);
+	
+
 	// 회원 삭제
 	public int deleteMember(Member member) {
 		return memberDao.deleteMember(member);
@@ -36,6 +38,7 @@ public class MemberService {
 		return memberDao.selectMemberById(member);
 	}
 	
+	// 전체 멤버 리스트(페이징)
 	public Map<String, Object> selectMemberList(int currentPage, int pagePerRow) {
 		// 컨트롤러에서 받는 파라미터 수정
 		Map<String, Integer> map = new HashMap<String, Integer>();
@@ -51,10 +54,9 @@ public class MemberService {
 		// last페이지 알고리즘
 		// 토탈카운트를 리턴받았는데 예를 들어 레코드가 총 1~9행이면 %pagePerRow(10) = 1~0		
 		int lastPage = 0;
-		if(total%pagePerRow == 0) {
-			lastPage = total/pagePerRow; // 레코드가 총 0, 10, 20, 30 ... 등 나누어떨어질때 마지막페이지는 몫
-		} else {
-			lastPage = total/pagePerRow+1; // 나머지가 있을 때 마지막페이지는 몫+1
+		lastPage = total/pagePerRow; // 레코드가 총 0, 10, 20, 30 ... 등 나누어떨어질때 마지막페이지는 몫
+		if(total%pagePerRow != 0) {
+			++lastPage; // 나머지가 있을 때 마지막페이지는 몫+1
 		}
 		// Dao에서 받은 리턴값 매핑
 		Map<String, Object> returnMap = new HashMap<String, Object>();

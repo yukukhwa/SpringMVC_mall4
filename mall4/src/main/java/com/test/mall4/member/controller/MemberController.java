@@ -23,6 +23,13 @@ public class MemberController {
 	private MemberService memberService;	
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
+	// 로그아웃(세션종료)
+	@RequestMapping(value="/logout", method=RequestMethod.GET)
+	public String logout(HttpSession session) {
+		session.invalidate();		
+		return "redirect:/index";
+	}
+	
 	// 회원삭제 post
 	@RequestMapping(value="/deleteMember", method=RequestMethod.GET)
 	public String deleteMember(Member member) {
@@ -48,7 +55,7 @@ public class MemberController {
 	public String loging(Model model, Member member, HttpSession session) {
 		Member returnMember = memberService.selectMemberById(member);
 		if(returnMember == null) {
-			logger.info("로그인에 실패했고 로그인뷰로 포워드할거야");
+			logger.info("로그인에 실패했고 로그인 뷰로 포워드");
 			model.addAttribute("requestMember", member);
 			return "login";
 		}
@@ -77,6 +84,7 @@ public class MemberController {
 		model.addAttribute("list", map.get("list"));		
 		model.addAttribute("lastPage", map.get("lastPage"));	
 		model.addAttribute("currentPage", currentPage);	
+		model.addAttribute("pagePerRow", pagePerRow);
 		return "getMemberList";
 	}
 	
@@ -93,6 +101,6 @@ public class MemberController {
 		logger.info("MemberController post");
 		logger.info("ID,PW: " + member.getMemberId() + " , " + member.getMemberPw());
 		memberService.insertMember(member);
-		return "redirect:/index";
+		return "redirect:/getMemberList";
 	}
 }
