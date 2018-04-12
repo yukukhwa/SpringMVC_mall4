@@ -5,10 +5,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>getAddressList</title>
+<script type="text/javascript">
+	$(document).ready(function(){
+		if($('#pagePerRow')) {
+			
+		}
+	})
+</script>
 </head>
 <body>
 	<h1>getAddressList</h1>
-	<form action="" method="post">
 		<table border="1">
 			<thead>
 				<tr>
@@ -35,15 +41,13 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		</form>
 		<form>
-			<select name="pagePerRow">
+			<select name="pagePerRow" id="pagePerRow">
 				<option value="5">5개씩 보기</option>
 				<option value="10">10개씩 보기</option>
 				<option value="15">15개씩 보기</option>
 				<option value="20">20개씩 보기</option>
 			</select>
-			<button type="submit">적용하기</button>
 		</form>
 			<c:if test="${currentPage != 1}">
 				<a href="${pageContext.request.contextPath}/getAddressList?currentPage=1">[처음으로]</a>

@@ -44,5 +44,4 @@ public class Board {
 				+ ", boardContent=" + boardContent + ", boardDate=" + boardDate + "]";
 	}
 	
-	
 }

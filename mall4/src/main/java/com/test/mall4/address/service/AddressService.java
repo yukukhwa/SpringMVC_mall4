@@ -55,7 +55,5 @@ public class AddressService {
 		logger.info("AddressService insertAddress 호출");
 		return addressDao.insertAddress(address);
 	}
-	
-	
 
 }

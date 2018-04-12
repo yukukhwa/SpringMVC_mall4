@@ -34,7 +34,7 @@
 </select>
 
 <!-- 주소리스트 조회  -->
-<select id="selectAddressList" parameterType="com.test.mall4.address.service.Address"
+<select id="selectAddressList" parameterType="java.util.Map"
 								resultType="com.test.mall4.address.service.Address">
 	SELECT address_no AS addressNo
 			, member_no AS memberNo

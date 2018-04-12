@@ -60,6 +60,6 @@
 	<insert id="insertBoard" parameterType="com.test.mall4.board.service.Board">
 		INSERT INTO board
 		(member_id,board_title, board_content, board_date)
-		VALUES (#{sessionMemberId},#{boardTitle},#{boardContent}, NOW())
+		VALUES (#{sessionMemberId}, #{boardTitle}, #{boardContent}, NOW())
 	</insert>
 </mapper>
