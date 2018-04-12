@@ -16,6 +16,7 @@
 	<table border="1">
 		<thead>
 			<tr>
+				<th>멤버넘버</th>
 				<th>멤버아이디</th>
 				<th>멤버패스워드</th>
 			</tr>
@@ -24,6 +25,7 @@
 		<tbody>
 			<c:forEach var="member" items="${list}">
 				<tr>
+					<td>${member.memberNo}</td>
 					<td>${member.memberId}</td>
 					<td>${member.memberPw}</td>
 					<td><a href="${pageContext.request.contextPath}/updateMember?memberNo=${member.memberNo}">수정버튼</a></td>

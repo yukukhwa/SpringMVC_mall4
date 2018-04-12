@@ -52,7 +52,7 @@ public class MemberController {
 			model.addAttribute("requestMember", member);
 			return "login";
 		}
-		session.setAttribute("loginMember", member);
+		session.setAttribute("loginMember", returnMember);
 		return "redirect:/index";
 	}
 
