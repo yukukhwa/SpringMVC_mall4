@@ -3,7 +3,19 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.test.mall4.item.service.ItemMapper">
-<insert id="insertItem" parameterType="java.util.Map">
+<!-- 화면에   -->
+<select id="selectItemList" parameterType="java.util.Map" resultType="com.test.mall4.item.service.Item">
+	select 
+		item_no as itemNo
+		,category_no as categoryNo
+		,item_name as itemName
+		,item_price as itemPrice 
+	form item 
+	order by item_no DESC 
+	limit ?,?
+</select>
+
+<insert id="insertItem" parameterType="com.test.mall4.item.service.Item">
 INSERT INTO item(
 	category_no
 	, item_name

@@ -25,8 +25,11 @@ public class ItemController {
 	@RequestMapping(value="/addItem" , method = RequestMethod.POST)
 	public String insertItem(Item item) {
 		logger.info("ItemController post호출");
-		String itemService = this.itemService.insertItem(item);
-		logger.info(itemService);
+		logger.info(item.getItemName());
+		logger.info(item.getItemPrice());
+		logger.info(String.valueOf(item.getCategoryNo()));
+		int row = itemService.insertItem(item);
+		logger.info(String.valueOf(row));
 		return "redirect:/index";
 	}
 

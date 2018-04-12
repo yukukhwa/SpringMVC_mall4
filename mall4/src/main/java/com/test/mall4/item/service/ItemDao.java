@@ -1,7 +1,5 @@
 package com.test.mall4.item.service;
 
-import java.util.Map;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,9 +16,9 @@ public class ItemDao {
 	
 	final String NS = "com.test.mall4.item.service.ItemMapper.";
 	
-	public int insertItem(Map map) {
+	public int insertItem(Item item) {
 		logger.info("ItemDao 호출");
-		int row = sqlSession.insert(NS+"insertItem", map);
+		int row = sqlSession.insert(NS+"insertItem", item);
 		return row;
 	}
 }

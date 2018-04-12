@@ -11,10 +11,10 @@ public class ItemService {
 	@Autowired
 	private ItemDao itemDao;
 	private static final Logger logger = LoggerFactory.getLogger(ItemService.class);
-	public String insertItem(Item item) {
+	public int insertItem(Item item) {
 		logger.info("ItemService 호출");
-		//String itemDao= this.itemDao.insertItem(item);
+		int row = itemDao.insertItem(item);
 		//logger.info(itemDao);
-		return "ItemService 리턴";
+		return row;
 	}
 }

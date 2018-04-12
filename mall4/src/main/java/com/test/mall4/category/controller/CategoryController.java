@@ -26,8 +26,8 @@ public class CategoryController {
 	public String selectCategoryAllList(Model model) {
 		List<Category> list = categoryService.selectCategoryAllList();
 		
-		logger.debug("test--- list", list);
-		logger.info("test info --- list ::: ", list);
+		//logger.debug("test--- list", list);
+		//logger.info("test info --- list ::: ", list);
 		
 		model.addAttribute("list", list);
 		return "/categoryList";

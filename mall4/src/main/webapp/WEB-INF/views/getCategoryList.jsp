@@ -5,6 +5,17 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>getCategoryList</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			if($('select#pagePerRow').val() != ${pagePerRow}){
+				$('select#pagePerRow').val(${pagePerRow});
+			}
+			$('select#pagePerRow').change(function(){
+				$(this).parent('form').submit();
+			});
+		});
+	</script>
 </head>
 <body>
 	<h1>getCategoryList</h1>
@@ -45,12 +56,11 @@
 		</tbody>
 	</table>
 	<form action="${pageContext.request.contextPath}/getCategoryList" method="get">
-		<select name="pagePerRow">
+		<select id="pagePerRow" name="pagePerRow">
 			<option value="3">3줄보기</option>
 			<option value="5">5줄보기</option>
 			<option value="10">10줄보기</option>
 		</select>
-		<button type="submit">적용하기</button>
 	</form>
 	<c:if test="${currentPage > 1}">
 		<a href="${pageContext.request.contextPath}/getCategoryList?currentPage=1&pagePerRow=${pagePerRow}">[처음으로]</a>
