@@ -1,5 +1,9 @@
 package com.test.mall4.item.service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +19,28 @@ public class ItemDao {
 	private SqlSessionTemplate sqlSession;
 	
 	final String NS = "com.test.mall4.item.service.ItemMapper.";
+	
+	public int deleteItem(Item item) {
+		return sqlSession.delete(NS+"deleteItem", item);
+	}
+	
+	public int updateItem(Item item) {
+		return sqlSession.update(NS+"updateItem", item);
+	}
+	
+	public Item selectItemOne(Item item) {
+		return sqlSession.selectOne(NS+"selectItemOne", item);
+		 
+	}
+	
+	public Map<String,Object> selectItemList(Map<String, Integer> map) {
+		List<Item> list = sqlSession.selectList(NS+"selectItemList", map);
+		int total = sqlSession.selectOne(NS+"totalCountItem");
+		Map<String,Object> returnMap = new HashMap<String,Object>();
+		returnMap.put("list", list);
+		returnMap.put("total", total);
+		return returnMap;
+	}
 	
 	public int insertItem(Item item) {
 		logger.info("ItemDao 호출");

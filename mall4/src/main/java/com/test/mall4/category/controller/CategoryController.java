@@ -30,7 +30,7 @@ public class CategoryController {
 		//logger.info("test info --- list ::: ", list);
 		
 		model.addAttribute("list", list);
-		return "/categoryList";
+		return "category/ajaxCategoryList";
 	}
 	/**
 	 * "/deleteCategory"주소를 get방식으로 호출할때 카테고리 삭제 처리 관련 컨트롤
@@ -61,7 +61,7 @@ public class CategoryController {
 	@RequestMapping(value="/updateCategory", method=RequestMethod.GET)
 	public String selectCategoryOne(Category category,Model model) {
 		model.addAttribute("category",categoryService.selectCategoryOne(category));
-		return "updateCategory";
+		return "category/updateCategory";
 	}
 	/**
 	 * "/getCategoryList"주소를 get방식으로 호출할때 리스트 화면 관련 컨트롤(페이징포함)
@@ -77,7 +77,7 @@ public class CategoryController {
 		model.addAttribute("lastPage",map.get("lastPage"));
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("pagePerRow", pagePerRow);
-		return "getCategoryList";
+		return "category/getCategoryList";
 	}
 	/**
 	 * "/addCategory"주소를 get방식으로 호출할때 카테고리 등록 폼 관련 컨트롤
@@ -86,7 +86,7 @@ public class CategoryController {
 	@RequestMapping(value="/addCategory", method=RequestMethod.GET)
 	public String insertCategory() {
 		logger.info("CategoryController get호출");
-		return "addCategory";
+		return "category/addCategory";
 	}
 	/**
 	 * "/addCategory"주소를 post방식으로 호출할때 카테고리 등록 처리 관련 컨트롤
