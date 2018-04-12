@@ -21,6 +21,7 @@ public class BoardController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 	
+	/*보드 업데이트 처리한 후 redirect getBoardList로 리다이렉트*/
 	@RequestMapping(value = {"/updateBoard"}, method=RequestMethod.POST)
 	public String updateBoard(Board board) {
 		logger.info("BoardController updateBoard 호출");
@@ -28,6 +29,7 @@ public class BoardController {
 		return "redirect:/getBoardList";
 	}
 	
+	/*보드 업데이트할때 수정할 해당 게시글을 가져와 updateBoard로 포워드 하기*/
 	@RequestMapping(value = {"/updateBoard"}, method=RequestMethod.GET)
 	public String selectBoardOne(Model model, Board board) {
 		logger.info("BoardController selectBoardOne 호출");
@@ -35,6 +37,7 @@ public class BoardController {
 		return "updateBoard";
 	}
 	
+	/*보드 삭제처리해 getBoardList로 리다이렉트*/
 	@RequestMapping(value = {"/deleteBoard"}, method=RequestMethod.GET)
 	public String deleteBoard(Board board) {
 		logger.info("BoardController deleteBoard 호출");
@@ -42,7 +45,7 @@ public class BoardController {
 		return "redirect:/getBoardList";
 	}
 	
-	// Boardlist 페이징 처리 마무리하기, 로그인
+	/*Boardlist 페이징 처리해 getBoardList.jsp로 포워드 */
 	@RequestMapping(value = {"/getBoardList"}, method=RequestMethod.GET)
 	public String selectBoardList(Model model
 								, @RequestParam(value="currentPage", defaultValue="1") int currentPage
@@ -56,17 +59,19 @@ public class BoardController {
 		return "getBoardList";
 	}
 	
+	/*보드의 글 추가 화면인 addBoard.jsp로 포워드*/
 	@RequestMapping(value = {"/addBoard"}, method=RequestMethod.GET)
 	public String insertBoard() {
 		logger.info("BoardController insertBoard Get 호출");
 		return "addBoard";
 	}
 	
+	/*보드의 글 추가 해 getBoardList로 리다이렉트*/
 	@RequestMapping(value = {"/addBoard"} , method=RequestMethod.POST)
 	public String insertBoard(Board board) {
 		logger.info("BoardController insertBoard Post 호출");
 		boardService.insertBoard(board);
-		return "redirect:/index";
+		return "redirect:/getBoardList";
 	}
 	
 	

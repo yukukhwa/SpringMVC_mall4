@@ -5,7 +5,7 @@
 	
 	<!-- 로그인 -->
 	
-	<!-- 수정처리 -->
+	<!-- 수정한 내용을 처리 -->
 	<update id="updateBoard" parameterType="com.test.mall4.board.service.Board">
 		UPDATE board
 			SET board_no=#{boardNo},
@@ -16,7 +16,7 @@
 			WHERE board_no=#{boardNo}
 	</update>
 	
-	<!-- 수정화면 가져오기 -->
+	<!-- 수정할 글의 내용 가져오기 -->
 	<select id="selectBoardOne" 
 		parameterType="com.test.mall4.board.service.Board"
 		resultType="com.test.mall4.board.service.Board">
@@ -30,18 +30,18 @@
 			WHERE board_no = #{boardNo}
 	</select>
 	
-	<!-- 삭제 -->
+	<!-- 선택한 글을 삭제 처리 -->
 	<delete id="deleteBoard" parameterType="com.test.mall4.board.service.Board">
 		DELETE FROM board WHERE board_no = #{boardNo}
 	</delete>
 	
-	<!-- board리스트의 전체 갯수 -->
+	<!-- board의 전체 갯수를 카운트 -->
 	<select id="totalCountBoard" 
 		resultType="Integer">
 		SELECT count(*) FROM board
 	</select>
 	
-	<!-- boardlist + 페이징 -->
+	<!-- board의 리스트를 내림순으로 조회 + 페이징 -->
 	<select id="selectBoardList" 
 		parameterType="java.util.Map"
 		resultType="com.test.mall4.board.service.Board">

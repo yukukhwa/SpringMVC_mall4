@@ -16,19 +16,23 @@ public class BoardService {
 	
 	@Autowired private BoardDao boardDao;
 	
+	/*보드 수정처리*/ 
 	public int updateBoard(Board board) {
 		return boardDao.updateBoard(board);
 	}
 	
+	/*수정할 보드를 화면에 출력*/
 	public Board selectBoardOne(Board board) {
 		return boardDao.selectBoardOne(board);
 	}
 	
+	/*해당 보드를 삭제처리*/
 	public int deleteBoard(Board board) {
 		int row = boardDao.deleteBoard(board);
 		return row;
 	}
 	
+	/*보드의 리스트를 조회 */
 	public Map<String, Object> selectBoardList(int currentPage, int pagePerRow) {
 		logger.info("BoardService selectBoardList 호출");
 		//1. currentPage를 beginPage로
@@ -47,13 +51,15 @@ public class BoardService {
 		if(boardCount%pagePerRow != 0) {
 			lastPage++;
 		}
+		
+		/*맵에 lastPage와 list를 저장해 리턴해준다*/
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		returnMap.put("lastPage", lastPage);
 		returnMap.put("list", list);
 		return returnMap;
 	}
 	
-	//Board추가
+	/*Board의 글을 추가*/
 	public int insertBoard(Board board) {
 		logger.info("BoardService insertBoard 호출");
 		int row = boardDao.insertBoard(board);
