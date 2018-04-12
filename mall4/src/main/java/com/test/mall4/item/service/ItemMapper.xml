@@ -28,7 +28,7 @@
 		item_no= #{itemNo}
 </update>
 
-<select id="selectItemOne" parameterType="com.test.mall4.item.service.Item" resultType="com.test.mall4.item.service.Item">
+<select id="selectItemOne" parameterType="com.test.mall4.item.service.Item" resultMap="item">
 	select
 		item_no as itemNo
 		,category_no as categoryNo
