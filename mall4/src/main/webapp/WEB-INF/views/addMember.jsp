@@ -6,6 +6,37 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>addMember</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script type="text/javascript">
+		$(document).ready(function(){
+			// 폼 유효성 검사
+			function formcheck(obj){
+				if(!obj.memberId.value || obj.memberId.value.trim().length ==0){
+					alert("아이디가 입력되지 않았습니다.");
+					obj.memberId.value="";
+					obj.memberId.focus();
+					return false;
+				}
+				if(!obj.memberPw.value || obj.memberPw.value.trim().length ==0){
+					alert("비밀번호가 입력되지 않았습니다.");
+					obj.memberPw.value="";
+					obj.memberPw.focus();
+					return false;
+				}
+				if(!obj.memberPwCheck.value || obj.memberPwCheck.value.trim().length ==0){
+					alert("비밀번호확인이 입력되지 않았습니다.");
+					obj.memberPwCheck.value="";
+					obj.memberPwCheck.focus();
+					return false;
+				}
+				return true;
+			}
+			
+			// 중복 아이디 체크
+			function CheckId(){
+				// 메서드 만들기
+			}
+		})
+	</script>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top">
@@ -54,10 +85,13 @@
 		</div>
 	</nav>
 	<h1>addMember</h1>
-		<form action="${pageContext.request.contextPath}/addMember" method="post">
-			아이디 : <input type="text" name="memberId" placeholder="아이디를 입력해주세요">
-			비밀번호 : <input type="text" name="memberPw" placeholder="비밀번호를 입력해주세요">
+		<form id="insertmember" action="${pageContext.request.contextPath}/addMember" onsubmit="return formcheck(this)" method="post">
+			아이디 :		<input type="text" id="memberId" name="memberId" placeholder="아이디를 입력해주세요.">
+						<input type="button" id="CheckId" value="아이디 중복 확인" onclick="CheckId();">
+			비밀번호 : 		<input type="password" name="memberPw" placeholder="비밀번호를 입력해주세요.">
+			비밀번호확인 : 	<input type="password" name="memberPwCheck" placeholder="비밀번호확인을 위해 다시 입력해주세요.">
 			<button type="submit">멤버등록</button>
 		</form>
+		<div id="here"></div>
 </body>
 </html>
