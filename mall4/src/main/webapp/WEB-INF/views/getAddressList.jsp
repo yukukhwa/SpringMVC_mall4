@@ -48,6 +48,7 @@
 				<option value="15">15개씩 보기</option>
 				<option value="20">20개씩 보기</option>
 			</select>
+			<button type="submit">적용하기</button>
 		</form>
 			<c:if test="${currentPage != 1}">
 				<a href="${pageContext.request.contextPath}/getAddressList?currentPage=1">[처음으로]</a>
