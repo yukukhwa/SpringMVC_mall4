@@ -7,19 +7,22 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.test.mall4.address.service.AddressDao;
 import com.test.mall4.member.service.MemberService;
 
 import org.slf4j.LoggerFactory;
 
 @Service
+@Transactional //@Transactional은 servlet-context.xml 에서 빈을 추가해서 사용
 public class MemberService {	
-	@Autowired
-	private MemberDao memberDao;	
+	@Autowired private MemberDao memberDao;	
+	@Autowired private AddressDao addressDao;
 	private static final Logger logger = LoggerFactory.getLogger(MemberService.class);
 	
-
 	// 회원 삭제
-	public int deleteMember(Member member) {
+	public int deleteMember(Member member) {		
 		return memberDao.deleteMember(member);
 	}
 	
