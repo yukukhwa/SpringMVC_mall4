@@ -1,5 +1,6 @@
 package com.test.mall4.item.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -11,13 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.test.mall4.category.service.Category;
+import com.test.mall4.category.service.CategoryService;
 import com.test.mall4.item.service.Item;
 import com.test.mall4.item.service.ItemService;
 
 @Controller
 public class ItemController {
-	@Autowired
-	private ItemService itemService;
+	@Autowired private ItemService itemService;
+	@Autowired private CategoryService categoryService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(ItemController.class);
 	
@@ -50,16 +53,18 @@ public class ItemController {
 	}
 	
 	@RequestMapping(value="/addItem" , method=RequestMethod.GET)
-	public String insertItem() {
+	public String insertItem(Model model) {
 		logger.info("ItemController get호출 ");
+		List<Category> list = categoryService.selectCategoryAllList();
+		model.addAttribute("list", list);
 		return "item/addItem";
 	}
 	@RequestMapping(value="/addItem" , method = RequestMethod.POST)
 	public String insertItem(Item item) {
 		logger.info("ItemController post호출");
-		logger.info(item.getItemName());
+		/*logger.info(item.getItemName());
 		logger.info(item.getItemPrice());
-		logger.info(String.valueOf(item.getCategory().getCategoryNo()));
+		logger.info(String.valueOf(item.getCategory().getCategoryNo()));*/
 		int row = itemService.insertItem(item);
 		logger.info(String.valueOf(row));
 		return "redirect:/index";

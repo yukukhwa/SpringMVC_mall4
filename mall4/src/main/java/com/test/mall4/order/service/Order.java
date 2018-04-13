@@ -7,6 +7,7 @@ import com.test.mall4.member.service.Member;
 
 public class Order {
 	private int orderNo;
+	private int orderCount;
 	private Member member;
 	private Item item;
 	private Date orderDate;
@@ -15,6 +16,12 @@ public class Order {
 	}
 	public void setOrderNo(int orderNo) {
 		this.orderNo = orderNo;
+	}
+	public int getOrderCount() {
+		return orderCount;
+	}
+	public void setOrderCount(int orderCount) {
+		this.orderCount = orderCount;
 	}
 	public Member getMember() {
 		return member;
@@ -36,6 +43,7 @@ public class Order {
 	}
 	@Override
 	public String toString() {
-		return "Order [orderNo=" + orderNo + ", member=" + member + ", item=" + item + ", orderDate=" + orderDate + "]";
+		return "Order [orderNo=" + orderNo + ", orderCount=" + orderCount + ", member=" + member + ", item=" + item
+				+ ", orderDate=" + orderDate + "]";
 	}
 }

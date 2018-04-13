@@ -5,6 +5,7 @@
 
 <resultMap type="com.test.mall4.order.service.Order" id="order">
 	<id column="orderNo" property="orderNo"/>
+	<result column="orderCount" property="orderCount"/>
 	<result column="orderDate" property="orderDate"/>
 	<collection property="member" ofType="com.test.mall4.member.service.Member">
 		<id column="memberNo" property="memberNo"/>
@@ -22,16 +23,40 @@
 	</collection>
 </resultMap>
 
+<update id="updateOrderCount" parameterType="com.test.mall4.order.service.Order">
+	UPDATE `order`
+	SET
+		order_count= #{orderCount}
+	WHERE
+		member_no = #{member.memberNo}
+	and 
+		item_no = #{item.itemNo}
+
+</update>
+
+<!--  -->
+<select id="orderCheck" parameterType="com.test.mall4.order.service.Order" resultMap="order">
+	select
+		order_count as orderCount
+	from `order`
+	where
+		member_no = #{member.memberNo}
+	and
+		item_no = #{item.itemNo}
+</select>
+
+<!--  -->
 <insert id="insertOrder" parameterType="com.test.mall4.order.service.Order">
 	INSERT INTO `order`
-	(member_no
+	(order_count
+	,member_no
 	, item_no
 	, order_date)
 	VALUES (
-	#{member.memberNo}
+	#{orderCount}
+	,#{member.memberNo}
 	,#{item.itemNo}
-	, NOW())	
-
+	, NOW())
 </insert>
 
 </mapper>

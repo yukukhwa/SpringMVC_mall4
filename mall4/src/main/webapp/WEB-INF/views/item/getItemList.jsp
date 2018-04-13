@@ -40,6 +40,9 @@
 				<th>
 					삭제
 				</th>
+				<th>
+					장바구니
+				</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -62,7 +65,10 @@
 					</td>
 					<td>
 						<a href="${pageContext.request.contextPath}/deleteItem?itemNo=${item.itemNo}">삭제</a>
-					</td>		
+					</td>
+					<td>
+						<a id="order" href="${pageContext.request.contextPath}/addOrder?item.itemNo=${item.itemNo}&member.memberNo=${loginMember.memberNo}">장바구니에 담기</a>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
