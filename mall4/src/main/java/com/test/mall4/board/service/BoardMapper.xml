@@ -2,9 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
 <mapper namespace="com.test.mall4.board.service.BoardMapper">
-	
-	<!-- 로그인 -->
-	
+
 	<!-- 수정한 내용을 처리 -->
 	<update id="updateBoard" parameterType="com.test.mall4.board.service.Board">
 		UPDATE board
@@ -16,7 +14,7 @@
 			WHERE board_no=#{boardNo}
 	</update>
 	
-	<!-- 수정할 글의 내용 가져오기 -->
+	<!-- 한개의 글 내용 가져오기 -->
 	<select id="selectBoardOne" 
 		parameterType="com.test.mall4.board.service.Board"
 		resultType="com.test.mall4.board.service.Board">

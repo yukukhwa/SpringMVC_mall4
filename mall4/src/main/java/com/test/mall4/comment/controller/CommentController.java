@@ -19,6 +19,7 @@ public class CommentController {
 	// addComment에서 포스트방식으로 들어올때 인덱스로 리다이렉트
 	@RequestMapping(value= {"/addComment"}, method=RequestMethod.POST)
 	public String insertComment(Comment comment) {
+		logger.info("Comment post Controller 호출");
 		commentService.insertComment(comment);
 		return "redirect:/index";
 	}
@@ -26,6 +27,7 @@ public class CommentController {
 	// 겟방식으로 들어올 때 addComment로 포워드
 	@RequestMapping(value= {"/addComment"}, method=RequestMethod.GET)
 	public String insertComment() {
+		logger.info("addComment get Controller 호출 ");
 		return "addComment";
 	}
 	

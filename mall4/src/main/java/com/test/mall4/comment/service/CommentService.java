@@ -13,6 +13,7 @@ public class CommentService {
 	
 	// 코멘트 추가 서비스
 	public int insertComment(Comment comment) {
+		logger.info("commentService 호출");
 		return commentDao.insertComment(comment);
 	}
 }

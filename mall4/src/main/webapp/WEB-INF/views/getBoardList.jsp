@@ -8,6 +8,7 @@
 </head>
 <body>
 	<h1>getBoardList</h1>
+	<c:import url="searchBoard.jsp"></c:import>
 	<form action="" method="post">
 		<table border="1">
 			<thead>
@@ -15,10 +16,7 @@
 					<th>게시글번호</th>
 					<th>글쓴이</th>
 					<th>게시글 제목</th>
-					<th>게시글 내용</th>
 					<th>등록 날짜</th>
-					<th>수정</th>
-					<th>삭제</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -26,29 +24,22 @@
 				<tr>
 					<td>${board.boardNo}</td>
 					<td>${board.sessionMemberId}</td>
-					<td>${board.boardTitle}</td>
-					<td>${board.boardContent}</td>
+					<td><a href="${pageContext.request.contextPath}/detailBoard?boardNo=${board.boardNo}">${board.boardTitle}</a></td>
 					<td>${board.boardDate}</td>
-					<td>
-						<a href="${pageContext.request.contextPath}/updateBoard?boardNo=${board.boardNo}">수정</a>
-					</td>
-					<td>
-						<a href="${pageContext.request.contextPath}/deleteBoard?boardNo=${board.boardNo}">삭제</a>
-					</td>
 				</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-		</form>
-		<form>
-			<select name="pagePerRow">
-				<option value="5">5개씩 보기</option>
-				<option value="10">10개씩 보기</option>
-				<option value="15">15개씩 보기</option>
-				<option value="20">20개씩 보기</option>
-			</select>
-			<button type="submit">적용하기</button>
-		</form>
+	</form>
+	<form>
+		<select name="pagePerRow">
+			<option value="5">5개씩 보기</option>
+			<option value="10">10개씩 보기</option>
+			<option value="15">15개씩 보기</option>
+			<option value="20">20개씩 보기</option>
+		</select>
+		<button type="submit">적용하기</button>
+	</form>
 			<c:if test="${currentPage != 1}">
 				<a href="${pageContext.request.contextPath}/getBoardList?currentPage=1">[처음으로]</a>
 			</c:if>

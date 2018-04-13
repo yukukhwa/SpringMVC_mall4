@@ -16,6 +16,8 @@ public class CommentDao {
 	
 	// 코멘트를 추가하는 메서드
 	public int insertComment(Comment comment) {
+		logger.info("commentDao 호출");
+		System.out.println(sqlSession.insert(NS+"insertComment", comment));
 		return sqlSession.insert(NS+"insertComment", comment);
 	}
 	

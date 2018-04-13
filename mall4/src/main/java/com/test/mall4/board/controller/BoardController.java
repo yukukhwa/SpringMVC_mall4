@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,7 +22,29 @@ public class BoardController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 	
-	/*보드 업데이트 처리한 후 redirect getBoardList로 리다이렉트*/
+	/*searchBoard 해당되는 내용을 리스트로 리다이렉트*/
+	@RequestMapping(value= {"/searchBoard"}, method=RequestMethod.POST)
+	public String searchBoard(Model model) {
+		return "redirect:/getBoardList";
+	}
+	
+	/*보드를 검색할 수 있는 searchBoard로 포워드한다*/
+	@RequestMapping(value= {"/searchBoard"}, method=RequestMethod.GET)
+	public String searchBoard() {
+		return "searchBoard";
+	}
+	
+	/*선택한 해당 보드의 내용을 조회하고 상세히 볼수 있다  
+	 *detailBoard로 포워드*/ 
+	@RequestMapping(value= {"/detailBoard"}, method=RequestMethod.GET)
+	public String detailBoard(Board board, Model model) {
+		model.addAttribute("board", boardService.selectBoardOne(board));
+		System.out.println(boardService.selectBoardOne(board));
+		return "detailBoard";
+	}
+	
+	
+	/*보드 업데이트 처리한 후  getBoardList로 리다이렉트*/
 	@RequestMapping(value = {"/updateBoard"}, method=RequestMethod.POST)
 	public String updateBoard(Board board) {
 		logger.info("BoardController updateBoard 호출");
