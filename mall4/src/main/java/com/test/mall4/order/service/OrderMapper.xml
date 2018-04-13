@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.test.mall4.order.service.OrderMapper">
+
+<resultMap type="com.test.mall4.order.service.Order" id="order">
+	<id column="orderNo" property="orderNo"/>
+	<result column="orderDate" property="orderDate"/>
+	<collection property="member" ofType="com.test.mall4.member.service.Member">
+		<id column="memberNo" property="memberNo"/>
+		<result column="memberId" property="memberId"/>
+		<result column="memberPw" property="memberPw"/>
+	</collection>
+	<collection property="item" ofType="com.test.mall4.item.service.Item">
+		<id column="itemNo" property="itemNo"/>
+		<result column="itemName" property="itemName"/>
+		<result column="itemPrice" property="itemPrice"/>
+		<collection property="category" ofType="com.test.mall4.category.service.Category">
+			<id column="categoryNo" property="categoryNo"/>
+			<result column="categoryName" property="categoryName"/>
+		</collection>
+	</collection>
+</resultMap>
+
+<insert id="insertOrder" parameterType="com.test.mall4.order.service.Order">
+	INSERT INTO `order`
+	(member_no
+	, item_no
+	, order_date)
+	VALUES (
+	#{member.memberNo}
+	,#{item.itemNo}
+	, NOW())	
+
+</insert>
+
+</mapper>

@@ -5,12 +5,12 @@
 <mapper namespace="com.test.mall4.item.service.ItemMapper">
 
 <resultMap type="com.test.mall4.item.service.Item" id="item">
-	<result column="itemNo" property="itemNo"/>
+	<id column="itemNo" property="itemNo"/>
 	<result column="itemName" property="itemName"/>
 	<result column="itemPrice" property="itemPrice"/>
 	<collection property="category" ofType="com.test.mall4.category.service.Category">
 		<id column="categoryNo" property="categoryNo"/>
-		<id column="categoryName" property="categoryName"/>
+		<result column="categoryName" property="categoryName"/>
 	</collection>
 </resultMap>
 
@@ -57,10 +57,10 @@
 </select>
 
 <insert id="insertItem" parameterType="com.test.mall4.item.service.Item">
-INSERT INTO item(
-	category_no
-	, item_name
-	, item_price)
+	INSERT INTO item(
+		category_no
+		, item_name
+		, item_price)
 	VALUES(
 		#{category.categoryNo}
 		, #{itemName}
