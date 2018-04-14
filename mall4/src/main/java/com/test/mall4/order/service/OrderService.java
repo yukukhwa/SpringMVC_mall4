@@ -14,13 +14,14 @@ public class OrderService {
 	
 	public int insertOrder(Order order) {
 		logger.info("insertOrder 호출");
-		Order order2 = orderDao.orderCheck(order);
-		logger.info(String.valueOf(order2.getOrderCount()));
-		if(order2.getOrderCount() == 0) {
+		int row = orderDao.orderCheck(order);
+		logger.info(String.valueOf(row));
+		if(0 == row) {
 			order.setOrderCount(1);
 			return orderDao.insertOrder(order);
 		}
-		order.setOrderCount(order2.getOrderCount()+1);
+		int orderCount = orderDao.selectOrderCount(order);
+		order.setOrderCount(++orderCount);
 		return orderDao.updateOrderCount(order);
 	}
 }

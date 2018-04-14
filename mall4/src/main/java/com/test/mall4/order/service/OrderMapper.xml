@@ -22,7 +22,18 @@
 		</collection>
 	</collection>
 </resultMap>
+<!--  -->
+<select id="selectOrderCount" parameterType="com.test.mall4.order.service.Order" resultType="Integer">
+	select
+		order_count as orderCount
+	from `order`
+	where
+			member_no = #{member.memberNo}
+		and
+			item_no = #{item.itemNo}
+</select>
 
+<!--  -->
 <update id="updateOrderCount" parameterType="com.test.mall4.order.service.Order">
 	UPDATE `order`
 	SET
@@ -35,9 +46,9 @@
 </update>
 
 <!--  -->
-<select id="orderCheck" parameterType="com.test.mall4.order.service.Order" resultMap="order">
+<select id="orderCheck" parameterType="com.test.mall4.order.service.Order" resultType="Integer">
 	select
-		order_count as orderCount
+		count(*)
 	from `order`
 	where
 		member_no = #{member.memberNo}

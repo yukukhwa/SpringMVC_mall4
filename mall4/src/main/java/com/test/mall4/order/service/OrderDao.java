@@ -15,13 +15,17 @@ public class OrderDao {
 	
 	private static final Logger logger = LoggerFactory.getLogger(OrderDao.class);
 	
+	public int selectOrderCount(Order order) {
+		return sqlSession.selectOne(NS+"selectOrderCount", order);
+	}
+	
 	public int insertOrder(Order order) {
 		logger.info("insertOrder 호출");
 		int row =sqlSession.insert(NS+"insertOrder", order);
 		return row;
 	}
 	
-	public Order orderCheck(Order order) {
+	public int orderCheck(Order order) {
 		logger.info("orderCheck 호출");
 		return sqlSession.selectOne(NS+"orderCheck", order);
 	}
