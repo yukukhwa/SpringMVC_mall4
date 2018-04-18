@@ -41,11 +41,16 @@
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="${pageContext.request.contextPath}/addAddress">주소 등록</a>			  	
+						</li>	
+						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/getOrderList?member.memberNo=${loginMember.memberNo}">장바구니</a>
+						</li>					
+						<li>
+							<a class="nav-link" style="font-weight: bold;">${loginMember.memberId}님 환영합니다.</a>
 						</li>
 						<li>
-							<a class="nav-link" href="${pageContext.request.contextPath}/logout">로그아웃</a>
-						</li>
-						&nbsp; ${loginMember.memberId}님 환영합니다.							
+							<a class="nav-link" href="${pageContext.request.contextPath}/logout">
+							<button type="submit">로그아웃</button></a>
+						</li>													
 					</c:otherwise>			      		
 				</c:choose>	
 		    </ul>
