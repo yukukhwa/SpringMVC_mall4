@@ -23,17 +23,23 @@
 	</collection>
 </resultMap>
 
+<delete id="deleteOrder" parameterType="com.test.mall4.order.service.Order">
+	DELETE FROM `order` WHERE order_no=#{orderNo}
+
+</delete>
+
 <select id="selectOrderList"  parameterType="com.test.mall4.order.service.Order" resultMap="order">
 	select
 		order.order_no as orderNo
 		,member.member_id as memberId
+		,category.category_name as categoryName
 		,item.item_name as itemName
 		,item.item_price as itemPrice
 		,order.order_count as orderCount
 		,order.order_date as orderDate
 		,item.item_no as itemNo
-	from `order` join member join item
-	on `order`.member_no = member.member_no and `order`.item_no = item.item_no
+	from `order` join member join item join category
+	on `order`.member_no = member.member_no and `order`.item_no = item.item_no and item.category_no = category.category_no
 	WHERE member.member_no = #{member.memberNo}
 	order by order_no DESC
 

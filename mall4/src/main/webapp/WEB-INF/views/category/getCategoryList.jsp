@@ -4,6 +4,8 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 	<title>getCategoryList</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript">
@@ -14,15 +16,28 @@
 			$('select#pagePerRow').change(function(){
 				$(this).parent('form').submit();
 			});
+			$('input#categoryNo').click(function(){
+				if($(this).prop("checked")){
+					$('tbody').find('input[type="checkbox"]').prop('checked', true);
+				}else{
+					$('tbody').find('input[type="checkbox"]').prop('checked', false);
+				}
+			});
 		});
 	</script>
 </head>
 <body>
+
+	<!-- navbar -->
+	<%@ include file = "/WEB-INF/views/module/nav.jsp" %>
+	<!-- /navbar -->
+
 	<h1>getCategoryList</h1>
 	<table border="1">
 		<thead>
 			<tr>
 				<th>
+					<input type="checkbox" id="categoryNo">
 					카테고리 넘버
 				</th>
 				<th>
@@ -40,6 +55,7 @@
 			<c:forEach var="category" items="${list}">
 				<tr>
 					<td>
+						<input type="checkbox">
 						${category.categoryNo}
 					</td>
 					<td>

@@ -17,6 +17,10 @@ public class OrderDao {
 	
 	private static final Logger logger = LoggerFactory.getLogger(OrderDao.class);
 	
+	public int deleteOrder(Order order) {
+		return sqlSession.delete(NS+"deleteOrder", order);
+	}
+	
 	public List<Order> selectOrderList(Order order) {
 		return sqlSession.selectList(NS+"selectOrderList", order);
 	}

@@ -1,36 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 	<title>updateItem</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function(){
-		var request = $.ajax({
-		  url: "${pageContext.request.contextPath}/selectCategoryAllList",
-		  method: "get",
-		  dataType: "json"
-		});
-		 
-		request.done(function( msg ) {
-			console.log(typeof msg);
-			//alert(msg.length + '<-- msg.length');
-			for(var i=0; i<msg.length; i++){
-				console.log(msg[i].categoryNo + '<-- msg.categoryNo');
-				console.log(msg[i].categoryName + '<-- msg.categoryName');
-				$('select#categoryList').append('<option value="'+msg[i].categoryNo+'">'+msg[i].categoryName+'</option>');
-			}
-			$('select#categoryList').val(${item.category.categoryNo});
-		});
-		 
-		request.fail(function( jqXHR, textStatus ) {
-		  alert( "Request failed: " + textStatus );
-		});
+		$('select#categoryList').val(${item.category.categoryNo});
 	});
 	</script>
 </head>
 <body>
+	<!-- navbar -->
+	<%@ include file = "/WEB-INF/views/module/nav.jsp" %>
+	<!-- /navbar -->
+
 	<h1>updateItem</h1>
 	<form action="${pageContext.request.contextPath}/updateItem" method="post">
 		<input type="hidden" name="itemNo" value="${item.itemNo}">
@@ -52,6 +40,9 @@
 				<tr>
 					<td>
 						<select id="categoryList" name="category.categoryNo">
+							<c:forEach var="category" items="${list}">
+								<option value="${category.categoryNo}">${category.categoryName}</option>								
+							</c:forEach>
 						</select>
 					</td>
 					<td>

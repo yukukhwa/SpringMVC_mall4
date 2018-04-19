@@ -38,6 +38,8 @@ public class ItemController {
 	
 	@RequestMapping(value="/updateItem", method=RequestMethod.GET)
 	public String selectItemOne(Item item, Model model) {
+		List<Category> list = categoryService.selectCategoryAllList();
+		model.addAttribute("list", list);
 		model.addAttribute("item", itemService.selectItemOne(item));
 		return "item/updateItem";
 	}

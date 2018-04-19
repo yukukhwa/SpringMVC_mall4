@@ -4,6 +4,8 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 	<title>getItemList</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript">
@@ -14,15 +16,27 @@
 			$('select#pagePerRow').change(function(){
 				$(this).parent('form').submit();
 			});
+			$('input#itemNo').click(function(){
+				if($(this).prop("checked")){
+					$('tbody').find('input[type="checkbox"]').prop('checked', true);
+				}else{
+					$('tbody').find('input[type="checkbox"]').prop('checked', false);
+				}
+			});
 		});
 	</script>
 </head>
 <body>
+	<!-- navbar -->
+	<%@ include file = "/WEB-INF/views/module/nav.jsp" %>
+	<!-- /navbar -->
+
 	<h1>getItemList</h1>
 	<table border="1">
 		<thead>
 			<tr>
 				<th>
+					<input type="checkbox" id="itemNo">
 					상품넘버
 				</th>
 				<th>
@@ -49,6 +63,7 @@
 			<c:forEach var="item" items="${list}">
 				<tr>
 					<td>
+						<input type="checkbox">
 						${item.itemNo}
 					</td>
 					<td>
@@ -67,7 +82,7 @@
 						<a href="${pageContext.request.contextPath}/deleteItem?itemNo=${item.itemNo}">삭제</a>
 					</td>
 					<td>
-						<a id="order" href="${pageContext.request.contextPath}/addOrder?item.itemNo=${item.itemNo}&member.memberNo=${loginMember.memberNo}">장바구니에 담기</a>
+						<a id="order" href="${pageContext.request.contextPath}/addOrder?item.itemNo=${item.itemNo}&member.memberNo=${loginMember.memberNo}&pagePerRow=${pagePerRow}&currentPage=${currentPage}">장바구니에 담기</a>
 					</td>
 				</tr>
 			</c:forEach>

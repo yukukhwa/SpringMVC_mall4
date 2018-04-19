@@ -14,6 +14,29 @@ public class OrderService {
 	
 	private static final Logger logger = LoggerFactory.getLogger(OrderService.class);
 	
+	public int deleteOrder(List<Integer> list) {
+		int sum = 0;
+		Order order = new Order();
+		for(Integer orderNo : list) {
+			order.setOrderNo(orderNo);
+			int row = orderDao.deleteOrder(order);
+			sum = sum+=row;
+		}
+		return sum;
+	}
+	
+	public int deleteOrder(Order order) {
+		return orderDao.deleteOrder(order);
+	}
+	
+	public int updateOrderCount(Order order) {
+		return orderDao.updateOrderCount(order);
+	}
+	
+	public List<Order> selectOrderList(Order order) {
+		return orderDao.selectOrderList(order);
+	}
+	
 	public int insertOrder(Order order) {
 		logger.info("insertOrder 호출");
 		int row = orderDao.orderCheck(order);
@@ -24,12 +47,6 @@ public class OrderService {
 		}
 		int orderCount = orderDao.selectOrderCount(order);
 		order.setOrderCount(++orderCount);
-		return orderDao.updateOrderCount(order);
-	}
-	public List<Order> selectOrderList(Order order) {
-		return orderDao.selectOrderList(order);
-	}
-	public int updateOrderCount(Order order) {
 		return orderDao.updateOrderCount(order);
 	}
 }
