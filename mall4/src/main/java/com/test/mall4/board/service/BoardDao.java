@@ -16,6 +16,11 @@ public class BoardDao {
 	
 	final String NS = "com.test.mall4.board.service.BoardMapper.";
 	
+	//검색
+	public List<Board> searchBoard(Map<String, String> map) {
+		return sqlSession.selectList(NS+"searchBoard", map);
+	}
+	
 	//수정화면
 	public int updateBoard(Board board) {
 		return sqlSession.update(NS+"updateBoard", board);

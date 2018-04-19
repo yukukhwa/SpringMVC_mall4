@@ -1,5 +1,6 @@
 package com.test.mall4.board.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -22,15 +23,21 @@ public class BoardController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 	
-	/*searchBoard 해당되는 내용을 리스트로 리다이렉트*/
+	/*searchBoard 해당되는 내용을 리스트로 리다이렉트
 	@RequestMapping(value= {"/searchBoard"}, method=RequestMethod.POST)
-	public String searchBoard(Model model) {
+	public String searchBoard(String searchBoardOption,String searchBoardContent
+								,Model model
+								,Board board) {
+		logger.info("searchBoard BoardController Post");
+		System.out.println(searchBoardOption+","+searchBoardContent+"<-- searchBoardOption, searchBoardContent");
+		Map<String, String> map = boardService.searchBoard(searchBoardOption, searchBoardContent);
 		return "redirect:/getBoardList";
-	}
+	}*/
 	
 	/*보드를 검색할 수 있는 searchBoard로 포워드한다*/
 	@RequestMapping(value= {"/searchBoard"}, method=RequestMethod.GET)
 	public String searchBoard() {
+		logger.info("searchBoard BoardController Get");
 		return "searchBoard";
 	}
 	

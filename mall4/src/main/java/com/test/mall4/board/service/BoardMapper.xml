@@ -3,11 +3,35 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
 <mapper namespace="com.test.mall4.board.service.BoardMapper">
 
+	<!-- 검색해서 출력하기 -->
+	<select id="searchBoard" 
+		parameterType="java.util.Map"
+		resultType="com.test.mall4.board.service.Board">
+		SELECT board_no AS boardNo
+				,member_id AS sessionMemberId
+				,board_title AS boardTitle
+				,board_content AS boardContent 
+		FROM board
+		<if test="searchBoardOption == 'boardNo'">
+			WHERE boardNo LIKE '%' || #{searchBoardContent} || '%'
+		</if>
+		<if test="searchBoardOption == 'sessionMemberId'">
+			WHERE sessionMemberId '%' || #{searchBoardContent} || '%'
+		</if>
+		<if test="searchBoardOption == 'boardTitle'">
+			WHERE boardTitle '%' || #{searchBoardContent} || '%'
+		</if>
+		<if test="searchBoardOption == 'boardContent'">
+			WHERE boardContent '%' || #{searchBoardContent} || '%'
+		</if>
+		ORDER BY board_no ASC	
+	</select>
+	
 	<!-- 수정한 내용을 처리 -->
 	<update id="updateBoard" parameterType="com.test.mall4.board.service.Board">
 		UPDATE board
-			SET board_no=#{boardNo},
-			member_id=#{sessionMemberId}
+			SET board_no=#{boardNo}
+			,member_id=#{sessionMemberId}
 			,board_title=#{boardTitle}
 			,board_content=#{boardContent}
 			,board_date=NOW()

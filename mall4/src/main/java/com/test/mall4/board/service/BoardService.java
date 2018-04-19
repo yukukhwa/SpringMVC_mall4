@@ -16,6 +16,14 @@ public class BoardService {
 	
 	@Autowired private BoardDao boardDao;
 	
+	/*public Map<String, String> searchBoard(String searchBoardOption, String searchBoardContent){
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("searchBoardOption", searchBoardOption);
+		map.put("searchBoardContent", searchBoardContent);
+		
+		return map;
+	}*/
+	
 	/*보드 수정처리*/ 
 	public int updateBoard(Board board) {
 		return boardDao.updateBoard(board);

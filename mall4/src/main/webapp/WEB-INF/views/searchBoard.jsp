@@ -10,7 +10,7 @@
 	<form action="${pageContext.request.contextPath}/searchBoard" method="post">
 		<select name="searchBoardOption" id="searchBoardOption">
 			<option value="boardNo">게시글번호</option>
-			<option value="sessionMemberId">글쓴이</option>
+			<option value="sessionMemberId">작성자</option>
 			<option value="boardTitle">게시글제목</option>
 			<option value="boardContent">게시글내용</option>
 		</select>

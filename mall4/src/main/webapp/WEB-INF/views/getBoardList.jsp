@@ -9,28 +9,26 @@
 <body>
 	<h1>getBoardList</h1>
 	<c:import url="searchBoard.jsp"></c:import>
-	<form action="" method="post">
-		<table border="1">
-			<thead>
-				<tr>
-					<th>게시글번호</th>
-					<th>글쓴이</th>
-					<th>게시글 제목</th>
-					<th>등록 날짜</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="board" items="${list}">
-				<tr>
-					<td>${board.boardNo}</td>
-					<td>${board.sessionMemberId}</td>
-					<td><a href="${pageContext.request.contextPath}/detailBoard?boardNo=${board.boardNo}">${board.boardTitle}</a></td>
-					<td>${board.boardDate}</td>
-				</tr>
-				</c:forEach>
-			</tbody>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>게시글번호</th>
+				<th>작성자</th>
+				<th>게시글 제목</th>
+				<th>등록 날짜</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach var="board" items="${list}">
+			<tr>
+				<td>${board.boardNo}</td>
+				<td>${board.sessionMemberId}</td>
+				<td><a href="${pageContext.request.contextPath}/detailBoard?boardNo=${board.boardNo}">${board.boardTitle}</a></td>
+				<td>${board.boardDate}</td>
+			</tr>
+			</c:forEach>
+		</tbody>
 		</table>
-	</form>
 	<form>
 		<select name="pagePerRow">
 			<option value="5">5개씩 보기</option>
