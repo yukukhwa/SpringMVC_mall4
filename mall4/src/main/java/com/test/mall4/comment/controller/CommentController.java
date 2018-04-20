@@ -18,6 +18,7 @@ public class CommentController {
 	@Autowired private CommentService commentService;
 	private static final Logger logger = LoggerFactory.getLogger(CommentController.class);
 	
+	
 	@RequestMapping(value= {"/deleteComment"}, method=RequestMethod.GET)
 	public String deleteComment(Comment comment,Board board) {
 		logger.info("deleteComment CommentController GET 호출");

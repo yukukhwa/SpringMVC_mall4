@@ -15,6 +15,7 @@ public class CommentService {
 	@Autowired private CommentDao commentDao;
 	private static final Logger logger = LoggerFactory.getLogger(CommentService.class);
 	
+
 	public int deleteComment(Comment comment) {
 		logger.info("CommentService deleteComment 호출");
 		return commentDao.deleteComment(comment);

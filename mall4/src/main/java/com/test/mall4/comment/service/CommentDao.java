@@ -17,7 +17,7 @@ public class CommentDao {
 	private static final Logger logger = LoggerFactory.getLogger(CommentDao.class);
 	
 	final String NS = "com.test.mall4.comment.service.CommentMapper.";
-	
+
 	// 해당 코멘트를 삭제하는 메서드
 	public int deleteComment(Comment comment) {
 		logger.info("deleteComment commentDao 호출");

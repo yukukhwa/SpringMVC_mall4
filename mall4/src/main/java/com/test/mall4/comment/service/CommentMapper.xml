@@ -3,6 +3,13 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
 <mapper namespace="com.test.mall4.comment.service.CommentMapper">
 
+<!-- 코멘트 갯수 카운트 -->
+<select id="selectCommentCount"
+	parameterType="com.test.mall4.comment.service.Comment"
+	resultType="com.test.mall4.comment.service.Comment">
+	SELECT count(*) FROM board_comment WHERE comment_no=#{commentNo}
+</select>
+
 <!-- 코멘트 삭제 -->
 <delete id="deleteComment"
 	parameterType="com.test.mall4.comment.service.Comment">
