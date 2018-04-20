@@ -11,14 +11,14 @@
 		<table>
 			<tr>
 				<td>
-					<input type="text" name="commentNo" value="${comment.commentNo}" readonly="readonly">
-					<input type="text" name="boardNo" value="${comment.boardNo}" readonly="readonly">
-					<input type="text" name="sessionMemberId" value="${comment.sessionMemberId} "readonly="readonly">
+					<input type="hidden" name="commentNo" value="${comment.commentNo}" readonly="readonly">
+					<input type="hidden" name="boardNo" value="${comment.boardNo}" readonly="readonly">
+					<input type="hidden" name="sessionMemberId" value="${comment.sessionMemberId} "readonly="readonly">
 				</td>
 			</tr>		
 			<tr>
 				<td>
-					<textarea rows="2" cols="30" name="commentContent" placeholder="댓글수정"></textarea>
+					<textarea rows="3" cols="30" name="commentContent" placeholder="댓글수정"></textarea>
 				</td>
 			</tr>
 		</table>

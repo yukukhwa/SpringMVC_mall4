@@ -39,20 +39,25 @@
             </tbody>
         </table>
     	<a href="${pageContext.request.contextPath}/updateBoard?boardNo=${board.boardNo}">[수정]</a>
-    	<a href="${pageContext.request.contextPath}/deleteBoard?boardNo=${board.boardNo}">[삭제]</a> <br><br>
+    	<a href="${pageContext.request.contextPath}/deleteBoard?boardNo=${board.boardNo}">[삭제]</a>
+    	<a href="${pageContext.request.contextPath}/getBoardList">[목록으로]</a><br><br>
 			
+			<h3>댓글리스트 ▼</h3>
 			<c:forEach var="comment" items="${list}">
 				<table>
 					<tr>
+						<th>from_</th>
+						<td>${comment.sessionMemberId}</td>
+						<th>Comment_</th>
 						<td>
+								<input type="hidden" name="boardNo" value="${board.boardNo}">
 								<input type="hidden" name="boardNo" value="${comment.boardNo}">
 								<input type="hidden" name="commentNo" value="${comment.commentNo}">
-								${comment.sessionMemberId}
 								${comment.commentContent}
 						</td>
 						<td>
 							<a href="${pageContext.request.contextPath}/updateComment?commentNo=${comment.commentNo}">[수정]</a>
-							<a href="${pageContext.request.contextPath}/deleteComment?commentNo=${comment.commentNo}">[삭제]</a>
+							<a href="${pageContext.request.contextPath}/deleteComment?commentNo=${comment.commentNo}&boardNo=${board.boardNo}">[삭제]</a>
 						</td>
 					</tr>
 				</table>

@@ -19,10 +19,12 @@ public class CommentController {
 	private static final Logger logger = LoggerFactory.getLogger(CommentController.class);
 	
 	@RequestMapping(value= {"/deleteComment"}, method=RequestMethod.GET)
-	public String deleteComment(Comment comment) {
+	public String deleteComment(Comment comment,Board board) {
 		logger.info("deleteComment CommentController GET 호출");
 		commentService.deleteComment(comment);
-		return "redirect:/detailBoard?boardNo="+comment.getBoardNo();
+		System.out.println(board+" <-- CommentController board");
+		System.out.println(comment+" <-- CommentController comment");
+		return "redirect:/detailBoard?boardNo="+board.getBoardNo();
 	}
 	
 	// updateComment 포스트방식 => redirect detailBoard
