@@ -4,6 +4,18 @@
 <mapper namespace="com.test.mall4.member.service.MemberMapper"> 
 	<!-- 테이블 컬럼명과 객체 필드명의 불일치 해결을 위해 별명을 사용 -->
 	
+	<!-- 아이디 중복 검색 -->
+	<select id="selectMemberId"
+			parameterType="com.test.mall4.member.service.Member"
+			resultType="com.test.mall4.member.service.Member"
+			>
+		SELECT member_no AS memberNo
+				,member_id AS memberId
+				,member_pw AS memberPw
+		FROM member
+		WHERE member_id=#{memberId}
+	</select>
+	
 	<!-- 회원 삭제 처리 -->
 	<delete id="deleteMember"
 			parameterType="com.test.mall4.member.service.Member"

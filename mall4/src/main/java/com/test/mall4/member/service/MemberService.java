@@ -21,6 +21,11 @@ public class MemberService {
 	@Autowired private AddressDao addressDao;
 	private static final Logger logger = LoggerFactory.getLogger(MemberService.class);
 	
+	// 아이디 중복 검색
+	public Member selectMemberId(Member member) {
+		return memberDao.selectMemberId(member);
+	}
+	
 	// 회원 삭제
 	public int deleteMember(Member member) {		
 		return memberDao.deleteMember(member);

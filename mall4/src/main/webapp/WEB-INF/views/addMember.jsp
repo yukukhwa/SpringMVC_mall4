@@ -1,90 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
+<%@ include file = "/WEB-INF/views/module/header.jsp" %>
 <head>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-	<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요한) -->
-	<script src="//code.jquery.com/jquery.js"></script>
-	<!-- 모든 합쳐진 플러그인을 포함하거나 (아래) 필요한 각각의 파일들을 포함하세요 -->
-	<script src="/resources/bootstrap/js/bootstrap.min.js"></script>
-	<!-- Respond.js 으로 IE8 에서 반응형 기능을 활성화하세요 (https://github.com/scottjehl/Respond) -->
-	<script src="/resources/bootstrap/js/respond.js"></script>
-	
-	<title>addMember</title>
 	<script>
-		$(function() {
-			// 모달을 전역변수로 선언
-			var modalContents = $(".modal-contents");
-			var modal = $("#defaultModal");		
-	
-			// 유효성(validation) 검사하여 상태를 class에 적용
-			$('#id').keyup(function(event) {
-				var divId = $('#divId');
-				if ($('#id').val() == "") {
-					divId.removeClass("has-success"); // removeClass() : 해당 클래스를 제거
-					divId.addClass("has-error"); // addClass : 해당 클래스를 추가
-				} else {
-					divId.removeClass("has-error");
-					divId.addClass("has-success");
-				}
-			});
-	
-			$('#password').keyup(function(event) {
-				var divPassword = $('#divPassword');
-				if ($('#password').val() == "") {
-					divPassword.removeClass("has-success");
-					divPassword.addClass("has-error");
-				} else {
-					divPassword.removeClass("has-error");
-					divPassword.addClass("has-success");
-				}
-			});
-	
-			$('#passwordCheck').keyup(function(event) {
-				var passwordCheck = $('#passwordCheck').val();
-				var password = $('#password').val();
-				var divPasswordCheck = $('#divPasswordCheck');
-				if ((passwordCheck == "") || (password != passwordCheck)) {
-					divPasswordCheck.removeClass("has-success");
-					divPasswordCheck.addClass("has-error");
-				} else {
-					divPasswordCheck.removeClass("has-error");
-					divPasswordCheck.addClass("has-success");
-				}
-			});
-	
-			$('#name').keyup(function(event) {
-				var divName = $('#divName');
-				if ($.trim($('#name').val()) == "") {
-					divName.removeClass("has-success");
-					divName.addClass("has-error");
-				} else {
-					divName.removeClass("has-error");
-					divName.addClass("has-success");
-				}
-			});
-	
-			$('#phoneNumber').keyup(function(event) {
-				var divPhoneNumber = $('#divPhoneNumber');
-				if ($.trim($('#phoneNumber').val()) == "") {
-					divPhoneNumber.removeClass("has-success");
-					divPhoneNumber.addClass("has-error");
-				} else {
-					divPhoneNumber.removeClass("has-error");
-					divPhoneNumber.addClass("has-success");
-				}
-			});
-	
+		$(function() {	
+						
 			// 유효성(validation) 검사
-			$("form").submit( function(event) { // 폼 버튼클릭시 (버튼 submit)
-				var provision = $('#provision');
-				var memberInfo = $('#memberInfo');
+			$("form").submit(function(event) {
+				var provision = $('#provision');				
 				var divId = $('#divId');
 				var divPassword = $('#divPassword');
 				var divPasswordCheck = $('#divPasswordCheck');
@@ -92,116 +14,45 @@
 				var divPhoneNumber = $('#divPhoneNumber');
 
 				// 회원가입약관
-				if ($('#provisionYn:checked').val() == "N") { // 체크박스의 값이(체크가) N이면,
-					modalContents.text("회원가입약관에 동의하여 주시기 바랍니다."); // modalContents.속성 text : 모달 메시지 입력
-					modal.modal('show'); // modal.속성 modal : 모달 띄우기
-
-					provision.removeClass("has-success");
-					provision.addClass("has-error");
-					$('#provisionYn').focus();
+				if ($('#provisionYn:checked').val() == "N") {			
+						alert('회원가입약관을 체크해주세요.');
+						$('#provisionYn').focus();
 					return false;
-				} else {
-					provision.removeClass("has-error");
-					provision.addClass("has-success");
-				}
-
-				// 개인정보취급방침
-				if ($('#memberInfoYn:checked').val() == "N") {
-					modalContents.text("개인정보취급방침에 동의하여 주시기 바랍니다.");
-					modal.modal('show');
-
-					memberInfo.removeClass("has-success");
-					memberInfo.addClass("has-error");
-					$('#memberInfoYn').focus();
-					return false;
-				} else {
-					memberInfo.removeClass("has-error");
-					memberInfo.addClass("has-success");
-				}
-
+				} 
 				// 아이디 검사
-				if ($('#id').val() == "") {
-					modalContents.text("아이디를 입력하여 주시기 바랍니다.");
-					modal.modal('show');
-
-					divId.removeClass("has-success");
-					divId.addClass("has-error");
-					$('#id').focus();
+				if ($('#memberId').val() == "") {
+					alert('아이디 중복검사를 해주세요.');
 					return false;
-				} else {
-					divId.removeClass("has-error");
-					divId.addClass("has-success");
-				}
-
+				} 
 				// 패스워드 검사
-				if ($('#password').val() == "") {
-					modalContents.text("패스워드를 입력하여 주시기 바랍니다.");
-					modal.modal('show');
-
-					divPassword.removeClass("has-success");
-					divPassword.addClass("has-error");
-					$('#password').focus();
+				if ($('#memberPw').val() == "") {
+					alert('비밀번호를 입력해주세요.');
+					$('#memberPw').focus();
 					return false;
-				} else {
-					divPassword.removeClass("has-error");
-					divPassword.addClass("has-success");
-				}
-
+				} 
 				// 패스워드 확인
 				if ($('#passwordCheck').val() == "") {
-					modalContents.text("패스워드 확인을 입력하여 주시기 바랍니다.");
-					modal.modal('show');
-
-					divPasswordCheck.removeClass("has-success");
-					divPasswordCheck.addClass("has-error");
+					alert('비밀번호 확인을 입력해주세요.');
 					$('#passwordCheck').focus();
 					return false;
-				} else {
-					divPasswordCheck.removeClass("has-error");
-					divPasswordCheck.addClass("has-success");
-				}
-
+				} 
 				// 패스워드 확인
-				if ($('#password').val() != $('#passwordCheck').val()
-						|| $('#passwordCheck').val() == "") {
-					modalContents.text("패스워드가 일치하지 않습니다.");
-					modal.modal('show');
-
-					divPasswordCheck.removeClass("has-success");
-					divPasswordCheck.addClass("has-error");
+				if ($('#memberPw').val() != $('#passwordCheck').val() || $('#passwordCheck').val() == "") {
+					alert('비밀번호와 확인이 같지않거나 입력하지 않았습니다.');
 					$('#passwordCheck').focus();
 					return false;
-				} else {
-					divPasswordCheck.removeClass("has-error");
-					divPasswordCheck.addClass("has-success");
-				}
-
+				} 
 				// 이름
 				if ($('#name').val() == "") {
-					modalContents.text("이름을 입력하여 주시기 바랍니다.");
-					modal.modal('show');
-
-					divName.removeClass("has-success");
-					divName.addClass("has-error");
+					alert('이름을 입력해주세요.');
 					$('#name').focus();
 					return false;
-				} else {
-					divName.removeClass("has-error");
-					divName.addClass("has-success");
-				}
-
+				} 
 				// 휴대폰
 				if ($('#phoneNumber').val() == "") {
-					modalContents.text("휴대폰 번호를 입력하여 주시기 바랍니다.");
-					modal.modal('show');
-
-					divPhoneNumber.removeClass("has-success");
-					divPhoneNumber.addClass("has-error");
+					alert('휴대폰을 입력해주세요.');
 					$('#phoneNumber').focus();
 					return false;
-				} else {
-					divPhoneNumber.removeClass("has-error");
-					divPhoneNumber.addClass("has-success");
 				}
 			});
 		});
@@ -210,29 +61,9 @@
 <body>
 	<!-- navbar -->
 	<%@ include file = "/WEB-INF/views/module/nav.jsp" %>
-	<!-- /navbar -->
-	
+	<!-- /navbar -->	
 	<h1>addMember</h1>
 	<div class="container">
-		<!-- 모달창 -->
-		<div class="modal fade" id="defaultModal">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h4 class="modal-title">알림</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>						
-					</div>
-					<div class="modal-body">
-						<p class="modal-contents"></p>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-					</div>
-				</div>				
-			</div>			
-		</div>	
-		<!--// 모달창 -->	
-
 		<!-- addMember form -->
 		<form class="form-horizontal" role="form" method="post" action="javascript:alert( 'success!' );">
 			<div class="form-group" >
@@ -248,29 +79,17 @@
 						</label>
 					</div>
 				</div>
-			</div>
-			<div class="form-group">
-				<label for="memberInfo" class="col-lg-2 control-label">개인정보취급방침</label>
-				<div class="col-lg-10" id="memberInfo">
-					<textarea class="form-control" rows="4" style="resize: none"></textarea>
-					<div class="radio">
-						<label> <input type="radio" id="memberInfoYn" name="memberInfoYn" value="Y" checked>
-						동의합니다.	
-						</label>				
-						<label> <input type="radio" id="memberInfoYn" name="memberInfoYn" value="N">
-						동의하지 않습니다.
-						</label>
-					</div>
-				</div>
-			</div>
+			</div>			
 			<div class="form-group" id="divId">
 				<label for="inputId" class="col-lg-2 control-label">
 					아이디
 				</label>
 				<div class="col-lg-6">
 					<input type="text" class="form-control onlyAlphabetAndNumber"
-						id="id" name="memberId" data-rule-required="true"
-						placeholder="30자이내의 알파벳, 언더스코어(_), 숫자만 입력 가능합니다." maxlength="30">
+						id="memberId" name="memberId" data-rule-required="true"
+						 maxlength="30" disabled="disabled" 
+						 value="${param.memberId}">
+					<a href="${pageContext.request.contextPath}/checkId">아이디 중복확인</a>
 				</div>
 			</div>
 			<div class="form-group" id="divPassword">
@@ -278,7 +97,7 @@
 					패스워드
 				</label>
 				<div class="col-lg-6">
-					<input type="password" class="form-control" id="password"
+					<input type="password" class="form-control" id="memberPw"
 						name="memberPw" data-rule-required="true" placeholder="패스워드"
 						maxlength="30">
 				</div>
