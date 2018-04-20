@@ -54,7 +54,7 @@
 	
 	<!-- 선택한 글을 삭제 처리 -->
 	<delete id="deleteBoard" parameterType="com.test.mall4.board.service.Board">
-		DELETE FROM board WHERE board_no = #{boardNo}
+		DELETE FROM board WHERE board_no=#{boardNo}
 	</delete>
 	
 	<!-- board의 전체 갯수를 카운트 -->

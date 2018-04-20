@@ -15,12 +15,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.test.mall4.board.service.Board;
 import com.test.mall4.board.service.BoardService;
+import com.test.mall4.comment.service.Comment;
+import com.test.mall4.comment.service.CommentService;
 
 @Controller
 public class BoardController {
 	
 	@Autowired private BoardService boardService;
-	
+	@Autowired private CommentService commentService;
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 	
 	/*searchBoard 해당되는 내용을 리스트로 리다이렉트
@@ -46,17 +48,18 @@ public class BoardController {
 	@RequestMapping(value= {"/detailBoard"}, method=RequestMethod.GET)
 	public String detailBoard(Board board, Model model) {
 		model.addAttribute("board", boardService.selectBoardOne(board));
+		List<Comment> list = commentService.selectComment(board);
+		model.addAttribute("list", list);
 		System.out.println(boardService.selectBoardOne(board));
 		return "detailBoard";
 	}
-	
 	
 	/*보드 업데이트 처리한 후  getBoardList로 리다이렉트*/
 	@RequestMapping(value = {"/updateBoard"}, method=RequestMethod.POST)
 	public String updateBoard(Board board) {
 		logger.info("BoardController updateBoard 호출");
 		boardService.updateBoard(board);
-		return "redirect:/getBoardList";
+		return "redirect:/detailBoard?boardNo="+board.getBoardNo();
 	}
 	
 	/*보드 업데이트할때 수정할 해당 게시글을 가져와 updateBoard로 포워드 하기*/

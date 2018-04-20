@@ -20,7 +20,6 @@ public class BoardService {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("searchBoardOption", searchBoardOption);
 		map.put("searchBoardContent", searchBoardContent);
-		
 		return map;
 	}*/
 	
@@ -36,8 +35,7 @@ public class BoardService {
 	
 	/*해당 보드를 삭제처리*/
 	public int deleteBoard(Board board) {
-		int row = boardDao.deleteBoard(board);
-		return row;
+		return boardDao.deleteBoard(board);
 	}
 	
 	/*보드의 리스트를 조회 */

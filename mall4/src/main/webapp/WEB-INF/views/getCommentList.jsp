@@ -10,23 +10,24 @@
 </head>
 <body>
 	<h1>getCommentList</h1>
-	<form action="${pageContext.request.contextPath}/getCommentList" method="get">
-		<c:forEach var="comment" items="${list}">
-			<table>
-				<tr>
-					<td>
-						${comment.boardNo}
-						${comment.commentNo}
-						${comment.sessionMemberId}
-						${comment.commentContent}
-					</td>
-					<td>
-						<a href="${pageContext.request.contextPath}/updateComment?commentNO=${comment.commentNo}">[수정]</a>
-						<a href="#">[삭제]</a>
-					</td>
-				</tr>
-			</table>
-		</c:forEach>
-	</form>
+		<form action="${pageContext.request.contextPath}/getCommentList?boardNo=${board.boardNo}" method="post">
+			<c:forEach var="comment" items="${list}">
+				<table>
+					<tr>
+						<td>
+							${comment.boardNo}
+							${comment.commentNo}
+							${comment.sessionMemberId}
+							${comment.commentContent}
+						</td>
+						<td>
+							<a href="${pageContext.request.contextPath}/updateComment?commentNO=${comment.commentNo}">[수정]</a>
+							<a href="#">[삭제]</a>
+						</td>
+					</tr>
+				</table>
+			</c:forEach>
+			<input type="submit" value="댓글보기">
+		</form>
 </body>
 </html>

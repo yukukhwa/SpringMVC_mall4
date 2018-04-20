@@ -11,8 +11,9 @@
 		<table>
 			<tr>
 				<td>
-					<input type="text" name="boardNo" readonly="readonly">
-					<input type="text" name="sessionMemberId" value="${loginMember.memberId}"readonly="readonly">
+					<input type="text" name="commentNo" value="${comment.commentNo}" readonly="readonly">
+					<input type="text" name="boardNo" value="${comment.boardNo}" readonly="readonly">
+					<input type="text" name="sessionMemberId" value="${comment.sessionMemberId} "readonly="readonly">
 				</td>
 			</tr>		
 			<tr>

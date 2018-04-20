@@ -15,13 +15,24 @@ public class CommentService {
 	@Autowired private CommentDao commentDao;
 	private static final Logger logger = LoggerFactory.getLogger(CommentService.class);
 	
-	public Comment selectComment(Comment comment) {
+	public int deleteComment(Comment comment) {
+		logger.info("CommentService deleteComment 호출");
+		return commentDao.deleteComment(comment);
+	}
+	
+	public int updateComment(Comment comment) {
+		logger.info("CommentService updateComment 호출");
+		return commentDao.updateComment(comment);
+	}
+	
+	public Comment selectCommentOne(Comment comment) {
+		logger.info("commentService selectOne 호출");
 		return commentDao.selectCommentOne(comment);
 	}
 	
-	public List<Comment> selectComment(int boardNo){
+	public List<Comment> selectComment(Board board){
 		logger.info("commentService selectComment 호출");
-		return commentDao.selectComment(boardNo);
+		return commentDao.selectComment(board.getBoardNo());
 	}
 	
 	// 코멘트 추가 서비스

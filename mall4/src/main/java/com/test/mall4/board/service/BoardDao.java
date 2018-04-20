@@ -33,8 +33,7 @@ public class BoardDao {
 	
 	//삭제처리
 	public int deleteBoard(Board board) {
-		int row = sqlSession.delete(NS+"deleteBoard", board);
-		return row;
+		return sqlSession.delete(NS+"deleteBoard", board);
 	}
 	
 	// 카운트 
