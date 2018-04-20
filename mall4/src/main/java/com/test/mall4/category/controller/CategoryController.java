@@ -88,7 +88,7 @@ public class CategoryController {
 		logger.info("CategoryController post호출");
 		logger.info("category 확인: "+category.getCategoryName());
 		this.categoryService.insertCategory(category);
-		return "redirect:/index";
+		return "redirect:/getCategoryList";
 	}
 
 }

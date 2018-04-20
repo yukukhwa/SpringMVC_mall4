@@ -8,6 +8,10 @@
 	<id column="itemNo" property="itemNo"/>
 	<result column="itemName" property="itemName"/>
 	<result column="itemPrice" property="itemPrice"/>
+	<result column="itemColor" property="itemColor"/>
+	<result column="itemSize" property="itemSize"/>
+	<result column="itemAmount" property="itemAmount"/>
+	<result column="itemInfo" property="itemInfo"/>
 	<collection property="category" ofType="com.test.mall4.category.service.Category">
 		<id column="categoryNo" property="categoryNo"/>
 		<result column="categoryName" property="categoryName"/>
@@ -24,6 +28,10 @@
 		category_no = #{category.categoryNo}
 		,item_name = #{itemName}
 		,item_price = #{itemPrice}
+		,item_color = #{itemColor}
+		,item_size = #{itemSize}
+		,item_amount = #{itemAmount}
+		,item_info = #{itemInfo}
 	WHERE 
 		item_no= #{itemNo}
 </update>
@@ -34,6 +42,10 @@
 		,category_no as categoryNo
 		,item_name as itemName
 		,item_price as itemPrice
+		,item_color as itemColor
+		,item_size as itemSize
+		,item_amount as itemAmount
+		,item_info as itemInfo
 	from item
 	where item_no=#{itemNo}
 </select>
@@ -49,7 +61,11 @@
 		,category.category_no as categoryNo
 		,category.category_name as categoryName
 		,item.item_name as itemName
-		,item.item_price as itemPrice 
+		,item.item_price as itemPrice
+		,item.item_color as itemColor
+		,item.item_size as itemSize
+		,item.item_amount as itemAmount
+		,item.item_info as itemInfo 
 	from item join category
 	on item.category_no = category.category_no
 	order by item_no DESC 
@@ -57,14 +73,21 @@
 </select>
 
 <insert id="insertItem" parameterType="com.test.mall4.item.service.Item">
-	INSERT INTO item(
-		category_no
-		, item_name
-		, item_price)
-	VALUES(
-		#{category.categoryNo}
-		, #{itemName}
-		, #{itemPrice}
-	)
+	INSERT INTO item
+	(category_no
+	, item_name
+	, item_price
+	, item_color
+	, item_size
+	, item_amount
+	, item_info)
+	VALUES 
+	(#{category.categoryNo}
+	, #{itemName}
+	, #{itemPrice}
+	, #{itemColor}
+	, #{itemSize}
+	, #{itemAmount}
+	, #{itemInfo})
 </insert>
 </mapper>

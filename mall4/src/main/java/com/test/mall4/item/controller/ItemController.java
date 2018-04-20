@@ -24,6 +24,14 @@ public class ItemController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ItemController.class);
 	
+	@RequestMapping(value="/detailItem", method=RequestMethod.GET)
+	public String detailItem(Model model,Item item) {
+		model.addAttribute("item", itemService.selectItemOne(item));
+		List<Category> list = categoryService.selectCategoryAllList();
+		model.addAttribute("list", list);
+		return "item/detailItem";
+	}
+	
 	@RequestMapping(value="/deleteItem", method=RequestMethod.GET)
 	public String deleteItem(Item item) {
 		int row = itemService.deleteItem(item);
@@ -64,12 +72,10 @@ public class ItemController {
 	@RequestMapping(value="/addItem" , method = RequestMethod.POST)
 	public String insertItem(Item item) {
 		logger.info("ItemController post호출");
-		/*logger.info(item.getItemName());
-		logger.info(item.getItemPrice());
-		logger.info(String.valueOf(item.getCategory().getCategoryNo()));*/
+		logger.info(item.toString());
 		int row = itemService.insertItem(item);
 		logger.info(String.valueOf(row));
-		return "redirect:/index";
+		return "redirect:/getItemList";
 	}
 
 }

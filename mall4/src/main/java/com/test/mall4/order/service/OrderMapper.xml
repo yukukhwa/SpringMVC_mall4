@@ -16,6 +16,10 @@
 		<id column="itemNo" property="itemNo"/>
 		<result column="itemName" property="itemName"/>
 		<result column="itemPrice" property="itemPrice"/>
+		<result column="itemColor" property="itemColor"/>
+		<result column="itemSize" property="itemSize"/>
+		<result column="itemAmount" property="itemAmount"/>
+		<result column="itemInfo" property="itemInfo"/>
 		<collection property="category" ofType="com.test.mall4.category.service.Category">
 			<id column="categoryNo" property="categoryNo"/>
 			<result column="categoryName" property="categoryName"/>

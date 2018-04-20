@@ -70,7 +70,7 @@
 						${item.category.categoryName}
 					</td>
 					<td>
-						${item.itemName}
+						<a href="${pageContext.request.contextPath}/detailItem?itemNo=${item.itemNo}">${item.itemName}</a>
 					</td>
 					<td>
 						${item.itemPrice}
